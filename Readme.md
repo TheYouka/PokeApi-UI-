@@ -13,3 +13,5 @@ Características principales:
 - Visualización de detalles como estadísticas base, tipos, habilidades y movimientos.
 - Interfaz  fácil de usar para una experiencia cómoda del usuario.
 - Integración con la PokeAPI para obtener datos en tiempo real.
+
+![Texto alternativo](https://i.blogs.es/53125f/cubchoo/450_1000.png)
