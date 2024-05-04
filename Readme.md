@@ -1,4 +1,4 @@
-##PokeAPI Graphical Interface
+PokeAPI Graphical Interface
 
 Este proyecto es una interfaz de comandos para acceder a la PokeAPI, una API que proporciona información sobre Pokémon. 
 Con esta interfaz, los usuarios pueden explorar y obtener datos detallados sobre diferentes Pokémon, como sus estadísticas, movimientos, habilidades y más, de manera visual e intuitiva.
