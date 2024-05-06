@@ -57,6 +57,8 @@ def mayusPrimer(string):
 #Esto imprime una lista de forma bonita, en el orden en que estén.
 #Ejemplo: si se ingresa printList( [1,2,3,4,5,6] )
 #Se va a imprimir:    1, 2, 3, 4, 5, 6
+#Retorna Falso si no hay elementos, y retorna Verdadero si sí hay,
+#Esta parte de retornar no la usé pero podría ayudar a validar.
 def printList(lista,casoNulo="No hay elementos"):
     #Daniel Cárdenas Adame
     lista=list(lista)
