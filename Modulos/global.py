@@ -58,6 +58,7 @@ def mayusPrimer(string):
 #Ejemplo: si se ingresa printList( [1,2,3,4,5,6] )
 #Se va a imprimir:    1, 2, 3, 4, 5, 6
 def printList(lista,casoNulo="No hay elementos"):
+    #Daniel Cárdenas Adame
     lista=list(lista)
     if len(lista)==0:
         print(casoNulo)
