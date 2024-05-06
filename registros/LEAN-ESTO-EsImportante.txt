@@ -6,12 +6,14 @@ GrupoDeHuevo.txt
 Habitat.txt
 
 No tiene forma de ordenar el Pokemon en base a generacion
-Entonces, lo hice un SET, y incluí el set de SOLO los nombres de los Pokemon
+Entonces, recomiendo que hagan las cosas SETS
+incluí archivos txt que tienen listas con SOLO los nombres de pokemon
 de cada generación
 Con un conjunto
 Así, se puede hacer interseccion
 ejemplo
-negroGen1=intersection(colorDiccionario['negro'], pokeGen1)
+negroGen1=intersection(set(colorDiccionario['negro']), set(pokeGen1))
 Esto te devuelve los de la generación 1 que son negros
 y lo guarda en negroGen1
 Porfa tomen esto en cuenta, no debería ser tanto problema.
+Si tienen problemas me avisan porque yo seré el encargado de las estructuras de datos :D
