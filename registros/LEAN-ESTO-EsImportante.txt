@@ -1,0 +1,17 @@
+Hola, un problema que encontré es en los archivos siguientes:
+
+Color.txt
+Tipo.txt
+GrupoDeHuevo.txt
+Habitat.txt
+
+No tiene forma de ordenar el Pokemon en base a generacion
+Entonces, lo hice un SET, y incluí el set de SOLO los nombres de los Pokemon
+de cada generación
+Con un conjunto
+Así, se puede hacer interseccion
+ejemplo
+negroGen1=intersection(colorDiccionario['negro'], pokeGen1)
+Esto te devuelve los de la generación 1 que son negros
+y lo guarda en negroGen1
+Porfa tomen esto en cuenta, no debería ser tanto problema.
