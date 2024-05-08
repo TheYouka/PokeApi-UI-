@@ -1,3 +1,4 @@
 #Todos las librerias no incluidas en python pero necesarias para el proyecto se enlistan aqui
 requests
 openpyxl
+pyfiglet
