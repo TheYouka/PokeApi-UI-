@@ -4,7 +4,8 @@ import requests as req
 import json
 import os
 path=os.getcwd()
-registroPath=path+str('\\registros\\')
+
+registroPath=os.path.join(path,"registros")
 
 def saveThisTo(saving,file):
     with open(file,'w') as guardando:
