@@ -45,6 +45,6 @@ def show_menu():
 
 
 
-pokeOffline.By_color()
-#show_menu()
+
+show_menu()
 #menu_offline.rewrite_data()
