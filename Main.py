@@ -1,9 +1,9 @@
-import subprocess
+#import subprocess
+import pyfiglet
 
-#Función que muestra el menú principal
 def show_menu():
 
-	subprocess.run(["banner","Poke App"])
+	print(pyfiglet.figlet_format("Poke App"))
 
 	print("################# ¡Bienvenido a la PokeAPI! #################",end="\n\n")
 	print("Una app para conocer todo sobre los pokemones")
@@ -19,7 +19,7 @@ def show_menu():
 4 - Ver gráficas
 """)
 
-  #En base a la opción mostrar submenu correspondiente
+
 	while True: 
 		opcion = input(">> ")
 		if opcion == "1":
@@ -44,5 +44,6 @@ def show_menu():
 
 
 
-show_menu()
 
+
+show_menu()
