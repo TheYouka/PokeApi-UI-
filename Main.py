@@ -1,5 +1,6 @@
 #import subprocess
 import pyfiglet
+import menu_offline 
 
 def show_menu():
 
@@ -44,6 +45,5 @@ def show_menu():
 
 
 
-
-
 show_menu()
+#menu_offline.rewrite_data()
