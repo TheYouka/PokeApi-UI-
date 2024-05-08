@@ -2,6 +2,35 @@ import json
 import os
 from Modulos import Utils
 
+def abrirJson(fileName):
+  #DANIEL CÁRDENAS ADAME
+  #Esta función te guarda un archivo a formato diccionario en una variable
+  #Lo retorna a una variable
+  with open(fileName,'r') as datos:
+    datoInfo=json.load(datos)
+  return datoInfo
+
+def abrirRegistro(fileName):
+  #DANIEL CÁRDENAS ADAME
+  #Esta función te guarda un archivo a formato diccionario en una variable
+  #Te deja saltar el paso de incluir el directorio hacia el registro
+  #Lo retorna a una variable
+  path=os.getcwd()
+  with open(path+'\\registros\\'+str(fileName),'r') as datos:
+    datoInfo=json.load(datos)
+  return datoInfo
+
+
+def findNum(pokemon,lista):
+  #DANIEL CÁRDENAS ADAME
+  #Esta función te regresa el ÍNDICE en el que se tiene el Pokémon.
+  #No te regresa su ID, solo índice. Va a depender de la lista que uses.
+  for i in range(len(lista)):
+    if lista[i]['nombre']==pokemon:
+      return i
+      break
+
+
 
 def rewrite_data():
 
