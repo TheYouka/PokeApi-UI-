@@ -1,6 +1,7 @@
 #import subprocess
 import pyfiglet
-import menu_offline 
+from Modulos import pokeOffline
+
 
 def show_menu():
 
@@ -44,6 +45,6 @@ def show_menu():
 
 
 
-
-show_menu()
+pokeOffline.By_color()
+#show_menu()
 #menu_offline.rewrite_data()

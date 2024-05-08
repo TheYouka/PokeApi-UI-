@@ -9,3 +9,13 @@ def check_connection_internet():
   else:
     #No tienes internet
     return False
+
+
+def load_json(file):
+  contenido = ""
+
+  with open(file,"r") as f:
+    contenido = f.read()
+
+  return contenido
+
