@@ -1,6 +1,8 @@
 import json
 import os
 from Modulos import Utils
+path=os.getcwd()
+pathRegistro=os.path.join(path,'registros')
 
 def abrirJson(fileName):
   #DANIEL CÁRDENAS ADAME
@@ -17,7 +19,7 @@ def abrirRegistro(fileName):
   #Lo retorna a una variable
   path=os.getcwd()
   try:
-    with open(path+'\\registros\\'+str(fileName),'r') as datos:
+    with open(pathRegistro+str(fileName),'r') as datos:
       datoInfo=json.load(datos)
     return datoInfo
   except:
@@ -25,15 +27,19 @@ def abrirRegistro(fileName):
     return False
 
 
-def findNum(pokemon,lista):
+def numToName(pokemonID,pokemones=abrirJson(pathRegistro+'GlobalData.txt')):
   #DANIEL CÁRDENAS ADAME
-  #Esta función te regresa el ÍNDICE en el que se tiene el Pokémon.
-  #No te regresa su ID, solo índice. Va a depender de la lista que uses.
-  for i in range(len(lista)):
-    if lista[i]['nombre']==pokemon:
+  #Esta función te regresa el NOMBRE del pokemon con dado numero de pokedex
+  for i in list(pokemones.keys()):
+    if pokemones[i]['id']==pokemonID:
       return i
       break
 
+def nameToNum(name,pokemones=abrirJson(pathRegistro+'GlobalData.txt')):
+  #DANIEL CÁRDENAS ADAME
+  #Función inversa de numToName
+  num=pokemones['name']['id']
+  return num
 
 
 def rewrite_data():
