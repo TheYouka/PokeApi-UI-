@@ -124,4 +124,4 @@ init_poke_info()
 load_types()
 load_habitats()
 load_eggs()
-print(Pokemones["pikachu"])
+
