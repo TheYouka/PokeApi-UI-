@@ -5,25 +5,27 @@ from Modulos import pokeOffline
 
 def show_menu():
 
-	print(pyfiglet.figlet_format("Poke App"))
+	print(pyfiglet.figlet_format("Poké App"))
 
-	print("################# ¡Bienvenido a la PokeAPI! #################",end="\n\n")
-	print("Una app para conocer todo sobre los pokemones")
+	print("################# ¡Bienvenido a la PokéAPI! #################",end="\n\n")
+	print("¡Una app para conocer todo sobre los Pokémon!")
 
 	#Imprimir Opciones
 	print("""
-1- Consultar información sobre los Pokemones
+1- Consultar información sobre los Pokémon
 
-2- Acceder a los registros
+2- Acceder a las estadisticas 
 
-3- Acceder a las estadisticas 
+3- Ver gráficas
 
-4 - Ver gráficas
+4- Actualizar registros
+
+5- Borrar datos creados por el programa.
 """)
 
 
 	while True: 
-		opcion = input(">> ")
+		opcion = str(input(">> "))
 		if opcion == "1":
 			pass
 			break
@@ -40,8 +42,12 @@ def show_menu():
 			pass
 			break
 
+		elif opcion=="5"
+			pass
+			break
+		
 		else:
-			print("Ingrese una opción valida")
+			print("Ingrese una opción valida. Intente escribir el número.")
 
 
 
