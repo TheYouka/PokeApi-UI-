@@ -18,8 +18,9 @@ def abrirRegistro(fileName):
   #Te deja saltar el paso de incluir el directorio hacia el registro
   #Lo retorna a una variable
   path=os.getcwd()
+  pathRegistro=os.path.join(path,'registros')
   try:
-    with open(pathRegistro+str(fileName),'r') as datos:
+    with open(os.path.join(pathRegistro,fileName),'r') as datos:
       datoInfo=json.load(datos)
     return datoInfo
   except:
