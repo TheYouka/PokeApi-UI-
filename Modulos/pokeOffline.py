@@ -28,7 +28,7 @@ def abrirRegistro(fileName):
     return False
 
 
-def numToName(pokemonID,pokemones=abrirJson(pathRegistro+'GlobalData.txt')):
+def numToName(pokemonID,pokemones=abrirJson(os.path.join(pathRegistro+'GlobalData.txt'))):
   #DANIEL CÁRDENAS ADAME
   #Esta función te regresa el NOMBRE del pokemon con dado numero de pokedex
   for name in list(pokemones.keys()):
