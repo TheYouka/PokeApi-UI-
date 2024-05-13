@@ -31,6 +31,8 @@ def abrirRegistro(fileName):
 def numToName(pokemonID,pokemones=abrirJson(os.path.join(pathRegistro,'GlobalData.txt'))):
   #DANIEL CÁRDENAS ADAME
   #Esta función te regresa el NOMBRE del pokemon con dado numero de pokedex
+  #agarra un id y te va a regresar el nombre del pokemon
+  #sirve para organizar en base a generación con la función genPrevTot()
   for name in list(pokemones.keys()):
     if pokemones[name]['id']==pokemonID:
       return name
@@ -48,6 +50,72 @@ def nameToNum(name,pokemones=abrirJson(os.path.join(pathRegistro,'GlobalData.txt
   except:
     return 0
 
+def genPrevTot(genNum):
+  if genNum==1:
+    prevTot=0
+  elif genNum==2:
+    prevTot=151
+  elif genNum==3:
+    prevTot=251
+  elif genNum==4:
+    prevTot=386
+  elif genNum==5:
+    prevTot=493
+  elif genNum==6:
+    prevTot=649
+  elif genNum==7:
+    prevTot=721
+  elif genNum==8:
+    prevTot=809
+  elif genNum==9:
+    prevTot=905
+  else:
+    prevTot=1025
+
+
+def genMin(genNum):
+  if genNum==1:
+    genMin=1
+  elif genNum==2:
+    prevTot=152
+  elif genNum==3:
+    prevTot=252
+  elif genNum==4:
+    prevTot=387
+  elif genNum==5:
+    prevTot=494
+  elif genNum==6:
+    prevTot=650
+  elif genNum==7:
+    prevTot=722
+  elif genNum==8:
+    prevTot=810
+  elif genNum==9:
+    prevTot=906
+  else:
+    prevTot=1026
+
+def genMax(genNum):
+  if genNum==1:
+    genMin=151
+  elif genNum==2:
+    prevTot=251
+  elif genNum==3:
+    prevTot=386
+  elif genNum==4:
+    prevTot=493
+  elif genNum==5:
+    prevTot=649
+  elif genNum==6:
+    prevTot=721
+  elif genNum==7:
+    prevTot=810
+  elif genNum==8:
+    prevTot=905
+  elif genNum==9:
+    prevTot=1025
+  else:
+    prevTot=9999
 
 def rewrite_data():
 
