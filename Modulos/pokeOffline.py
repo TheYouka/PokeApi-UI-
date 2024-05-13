@@ -35,12 +35,18 @@ def numToName(pokemonID,pokemones=abrirJson(pathRegistro+'GlobalData.txt')):
     if pokemones[i]['id']==pokemonID:
       return i
       break
+    else:
+      return 0
+      break
 
 def nameToNum(name,pokemones=abrirJson(pathRegistro+'GlobalData.txt')):
   #DANIEL CÁRDENAS ADAME
   #Función inversa de numToName
-  num=pokemones['name']['id']
-  return num
+  try:
+    num=pokemones['name']['id']
+    return name
+  except:
+    return '0'
 
 
 def rewrite_data():
