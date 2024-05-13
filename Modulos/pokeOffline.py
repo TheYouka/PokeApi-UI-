@@ -39,7 +39,7 @@ def numToName(pokemonID,pokemones=abrirJson(os.path.join(pathRegistro+'GlobalDat
       return 0
       break
 
-def nameToNum(name,pokemones=abrirJson(pathRegistro+'GlobalData.txt')):
+def nameToNum(name,pokemones=abrirJson(os.path.join(pathRegistro+'GlobalData.txt'))):
   #DANIEL CÁRDENAS ADAME
   #Función inversa de numToName
   try:
