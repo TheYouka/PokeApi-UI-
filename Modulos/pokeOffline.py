@@ -27,7 +27,6 @@ def abrirRegistro(fileName):
     #no se encontró el archivo
     return False
 
-
 def numToName(pokemonID,pokemones=abrirJson(os.path.join(pathRegistro,'GlobalData.txt'))):
   #DANIEL CÁRDENAS ADAME
   #Esta función te regresa el NOMBRE del pokemon con dado numero de pokedex
@@ -50,6 +49,7 @@ def nameToNum(name,pokemones=abrirJson(os.path.join(pathRegistro,'GlobalData.txt
   except:
     return 0
 
+#Te dice el total de Pokémon antes de cierta generación.
 def genPrevTot(genNum):
   if genNum==1:
     prevTot=0
@@ -72,7 +72,7 @@ def genPrevTot(genNum):
   else:
     prevTot=1025
 
-
+#Te dice la ID mínima de una generación
 def genMin(genNum):
   if genNum==1:
     genMin=1
@@ -95,6 +95,7 @@ def genMin(genNum):
   else:
     prevTot=1026
 
+#Te dice la ID máxima de una generación
 def genMax(genNum):
   if genNum==1:
     genMin=151
@@ -116,6 +117,16 @@ def genMax(genNum):
     prevTot=1025
   else:
     prevTot=9999
+
+def isInGen(id,gen):
+  if id<=genMax(gen) and id>=genMin(gen):
+    return True
+  else:
+    return False
+    #fin
+
+
+
 
 def rewrite_data():
 
