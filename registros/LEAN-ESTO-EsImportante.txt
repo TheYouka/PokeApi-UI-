@@ -1,0 +1,97 @@
+Hola, un problema que encontré es en los archivos siguientes:
+
+Color.txt
+Tipo.txt
+GrupoDeHuevo.txt
+Habitat.txt
+
+No tiene forma de ordenar el Pokemon en base a generacion
+Entonces, recomiendo que hagan las cosas SETS
+incluí archivos txt que tienen listas con SOLO los nombres de pokemon
+de cada generación
+Con un conjunto
+Así, se puede hacer interseccion
+ejemplo
+negroGen1=intersection(set(colorDiccionario['negro']), set(pokeGen1))
+Esto te devuelve los de la generación 1 que son negros
+y lo guarda en negroGen1
+Porfa tomen esto en cuenta, no debería ser tanto problema.
+Si tienen problemas me avisan porque yo seré el encargado de las estructuras de datos :D
+
+
+----------------------------------
+
+
+EL ARCHIVO
+GlobalData.txt
+Es un archivo tipo lista donde cada elemento es un diccionario
+Los diccionarios correspondientes tienen la información relevante de ese Pokémon
+RECUERDEN: LAS LISTAS EMPIEZAN EN 0.
+Al momento de manipular fíjense que la información no esté siendo movida 1 por encima
+
+
+
+--------------------------------------
+
+
+
+INFORMACIÓN DE GENERACIONES
+Esto se va a acomodar de tal manera para cada una de las generaciones:
+Total  x
+ID Inicial - ID Final
+Índice Inicial - Índice Final
+
+
+Gen 1:
+Total 151
+1 - 151
+0 - 150
+
+Gen 2:
+Total 100
+152 - 251
+151 - 250
+
+Gen 3:
+Total 135
+252 - 386
+251 - 385
+
+Gen 4:
+Total 107
+387 - 493
+386 - 492
+
+Gen 5:
+Total 156
+494 - 649
+493 - 648
+
+Gen 6:
+Total 72
+650 - 721
+649 - 720
+
+Gen 7:
+Total 88
+722 - 809
+721 - 808
+
+Gen 8:
+Total 96
+810 - 905
+809 - 904
+
+Gen 9:
+Total 120
+906 - 1025
+905 - 1024
+
+
+
+---------------
+
+
+
+
+
