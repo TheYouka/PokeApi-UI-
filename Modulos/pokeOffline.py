@@ -118,8 +118,8 @@ def genMax(genNum):
   else:
     prevTot=9999
 
-def isInGen(id,gen):
-  if id<=genMax(gen) and id>=genMin(gen):
+def isInGen(idNum,gen):
+  if idNum<=genMax(gen) and idNum>=genMin(gen):
     return True
   else:
     return False
