@@ -210,9 +210,8 @@ while True:
             ws2=wb2.active
             porch(ws2)
         elif r1==6:
-            pass
+            return
         else:
-            pass
             print("Ingrese una de las opciones brindadas")
     except r1<1 or r1>6:
                 continue
