@@ -7,6 +7,7 @@ import os
 from Modulos.Graficas import Gr_Dic_tipos
 from Modulos.Graficas import Gr_Dic_gen_tip
 from Modulos.Graficas import Gr_Dic_colores
+from Modulos.Graficas import Estadisticas
 path=os.getcwd()
 
 print("################# ¡Bienvenido a la PokéAPI! #################",end="\n\n")
@@ -255,6 +256,14 @@ while opcion!=6:
         elif opcion==2:
                 #consultar estadísticas
 		#Janis Aideé Reyna Garza
+		print(Estadisticas)
+                pass
+
+#----------------------------------------------------------------------
+
+        elif opcion==3:
+                #consultar gráficas
+		#Janis Aideé Reyna Garza
 		while True:
 	                r=int(input("¿Cuál de las siguientes gráficas deseas consultar?\n1.Gráfica de cantidad de pokemones por color\n2.Gráfica de cantidad de pokemones por tipo\n3.Gráfica de comparación sobre la generación 1 y generación 9 referente a cuantos tipos de pokemones hay\n Opción: "))
 			if r==1:
@@ -265,12 +274,6 @@ while opcion!=6:
 				print(Gr_Dic_gen_tip)
 			else:
 				print("Ingrese de nuevo")
-                pass
-
-#----------------------------------------------------------------------
-
-        elif opcion==3:
-                #consultar gráficas
                 pass
 
 #------------------------------------------------------------------------
