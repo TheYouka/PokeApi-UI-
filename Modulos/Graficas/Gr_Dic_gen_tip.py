@@ -62,6 +62,7 @@ from openpyxl import load_workbook
 from openpyxl import Workbook
 import matplotlib.pyplot as plt
 import numpy as np
+#Grafica de comparacion de la gen 1 y 9 en cantidad de tipos
 dtip=tipos()
 dgen=gen()
 #crear conjuntos e intersecciones
