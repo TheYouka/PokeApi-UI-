@@ -45,3 +45,4 @@ plt.axis("equal")
 plt.title("Cantidad de Pokemones de cada color")
 wb.save("Grcolor.xlsx")
 plt.show()
+return
