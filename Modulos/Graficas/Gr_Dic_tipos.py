@@ -43,3 +43,4 @@ plt.axis("equal")
 plt.title("Cantidad de Pokemones de cada tipo")
 plt.show()
 wb.save("GrType.xlsx")
+return
