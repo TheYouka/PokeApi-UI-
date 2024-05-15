@@ -1,6 +1,7 @@
 from openpyxl import load_workbook
 from openpyxl import Workbook
 import matplotlib.pyplot as plt
+#Grafica de pastel de colores
 wb =load_workbook("GrColor.xlsx")
 ws = wb.active
 #1r for para manipular las columnas y filas, cree el dic de listas para almacenar listas con nombres de variables
