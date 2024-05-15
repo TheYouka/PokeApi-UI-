@@ -1,7 +1,8 @@
 def tipos():
     # Crear una lista de listas para almacenar datos
     listas = [[] for _ in range(18)]
-    wb=load_workbook("GrType.xlsx")
+    path=os.path.join(os.path.dirname(__file__), 'GrType.xlsx')
+    wb=load_workbook(filename=path)
     ws=wb.active
     s=-1
     for i in range (1,19):
@@ -24,10 +25,11 @@ def tipos():
         dic_tipos[tipos_nombres[i]] = listas[i]
 
     y=dic_tipos
-    wb.save("GrType.xlsx")
+    wb.save(filename=path)
     return(y)
 def gen():
-    wb =load_workbook("GrGn.xlsx")
+    path=os.path.join(os.path.dirname(__file__), 'GrGn.xlsx')
+    wb =load_workbook(filename=path)
     ws = wb.active
     s=-1
     listas={}
@@ -54,7 +56,7 @@ def gen():
                 continue
         s=8
     x=listas
-    wb.save("GrGn.xlsx")
+    wb.save(filename=path)
     return(x)
 
 import requests
@@ -62,6 +64,7 @@ from openpyxl import load_workbook
 from openpyxl import Workbook
 import matplotlib.pyplot as plt
 import numpy as np
+import os
 #Grafica de comparacion de la gen 1 y 9 en cantidad de tipos
 dtip=tipos()
 dgen=gen()
