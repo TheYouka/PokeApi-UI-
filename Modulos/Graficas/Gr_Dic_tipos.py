@@ -1,6 +1,7 @@
 from openpyxl import load_workbook
 from openpyxl import Workbook
 import matplotlib.pyplot as plt
+#grafica de pastel de tipos de pokemones
 wb =load_workbook("GrType.xlsx")
 ws = wb.active
 s=-1
