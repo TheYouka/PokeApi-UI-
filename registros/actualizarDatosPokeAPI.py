@@ -76,8 +76,9 @@ def ACTUALIZAR():
 	    	
                 #Extraer el id global del pokemon
                 pokemon_id = re.search(r"pokemon\/(\d+)",tipoDex['pokemon'][i]['pokemon']['url']).group(1)
-                Pokemones[pokemon_name]["id"] = pokemon_id
-                
+                Pokemones[pokemon_name]["id"] = pokemon_id 
+    
+    
         tipoDiccionario[name]=pokeList
 
     saveThisTo(tipoDiccionario,os.path.join(registroPath,'Tipos.txt'))
@@ -155,9 +156,12 @@ def ACTUALIZAR():
                     
                 else:
                     num+=1
+                    
+        try:
+            a=Pokemones[pokemon]['habitat']
+        except:
+            Pokemones[pokemon]['habitat']='ninguno'
             continue
-                
-
 
     saveThisTo(Pokemones, os.path.join(registroPath,'GlobalData.txt'))
 
@@ -188,12 +192,14 @@ def ACTUALIZAR():
         return pokeID
 
 
-    a=pokeOffline.numToName(1000,Pokemones)
+
     for i in range(1,11):
         genList=[]
+
         #Pokemones
         for j in genNum(i):
             nombre=pokeOffline.numToName(j,Pokemones)
+            
             if str(nombre)=='0':
                 break
             genList.append(nombre)
@@ -201,7 +207,6 @@ def ACTUALIZAR():
 
 
     print("Se tiene lista la información en base únicamente a la API.")
-
 
 
 
