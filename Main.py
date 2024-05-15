@@ -4,15 +4,161 @@ import json
 import requests
 import openpyxl
 import os
+import random
+
 from Modulos.Graficas import Gr_Dic_tipos
 from Modulos.Graficas import Gr_Dic_gen_tip
 from Modulos.Graficas import Gr_Dic_colores
 from Modulos.Graficas import Estadisticas
+
+from registros import actualizarDatosPokeAPI as datosMod
+
 path=os.getcwd()
 
 print("################# ¡Bienvenido a la PokéAPI! #################",end="\n\n")
 print("¡Una app para conocer todo sobre los Pokémon!")
 print('')
+
+
+#-------------------------------------------------------------------------------------------
+#Menu de edición
+def edite_menu():
+        print("¡Bienvenido al menú de edición, aqui puede agregar datos al registro")
+
+        pokemon = {}
+
+        name = input("¿Cúal es el nombre de su pokemon?")
+
+        print("""Ingresa el color de tu pokemon, las opciones validas son:
+- Negro
+- Azul
+- Marrón
+- Gris
+- Verde
+- Rosa
+- Morado
+- Rojo
+- Blanco
+- Amarillo""")
+
+        color = input(">> ").lower()
+        
+        while color not in ["negro","azul","marrón","gris","verde","rosa","morado","rojo","blanco","amarillo"]:
+                print("Ingresa una opcion valida")
+                color = input(">> ").lower()
+
+
+        print("""Ingresa el tipo de tu pokemon, las opciones validas son:
+- normal
+- fighting
+- flying
+- poison
+- ground
+- rock
+- bug
+- ghost
+- steel
+- fire
+- water
+- grass
+- electric
+- psychic
+- ice
+- dragon
+- dark
+- fairy
+- stellar
+- unknown
+""")
+
+        tipo = input(">> ").lower()
+        while tipo not in ["normal", "fighting", "flying", "poison", "ground", "rock", "bug", "ghost", "steel", "fire", "water", "grass", "electric", "psychic", "ice", "dragon", "dark", "fairy", "stellar", "unknown"]:
+                print("Ingresa una opcion valida")
+                tipo = input(">> ").lower()
+
+
+        print("""Ingresa el grupo al que pertenece tu pokemon, las opciones validas son:
+- monster
+- water1
+- bug
+- flying
+- ground
+- fairy
+- plant
+- humanshape
+- water3
+- mineral
+- indeterminate
+- water2
+- ditto
+- dragon
+- no-eggs
+""")
+        
+        grupo = input(">> ").lower()
+        while grupo not in ["monster", "water1", "bug", "flying", "ground", "fairy", "plant", "humanshape", "water3", "mineral", "indeterminate", "water2", "ditto", "dragon", "no-eggs"]:
+                print("Ingresa una opcion valida")
+                grupo = input(">> ").lower()
+
+        print("""Ingresa el grupo al que pertenece tu pokemon, las opciones validas son:
+- Caverna               
+- bosque
+- pradera
+- montaña
+- raro
+- campo 
+- mar
+- ciudad
+- agua salada
+
+""")
+
+        habitat = input(">> ").lower()
+        while habitat not in ["caverna", "bosque", "pradera", "montaña", "raro", "campo", "mar", "ciudad", "agua salada"]:
+                print("Ingresa una opcion valida")
+                habitat = input(">> ").lower()
+
+
+        #Generar id random
+        id_ = random.randint(1000, 9999)
+
+        #Añadir info de pokemon
+        pokemon["name"] = name
+        pokemon["tipo"] = tipo
+        pokemon["color"] = color
+        pokemon["habitat"] = habitat
+        pokemon["grupo"] = grupo
+        pokemon["id"] = id_
+
+        Pokemones[name] = pokemon
+
+        registroPath=os.path.join(path,"registros")
+        datosMod.saveThisTo(Pokemones, os.path.join(registroPath,'GlobalData.txt'))
+        
+        print(Pokemones["goku"])
+        
+
+#-------------------------------------------------------------------------------------------
+
+
+def update():
+        test=requests.get('https://pokeapi.co/api/v2/pokemon-color/1/').status_code
+        if test==200:
+                
+
+                
+                print('---------- Actualizando ----------')
+                print('')
+                Pokemones = datosMod.ACTUALIZAR()
+                print('')
+                print('---------- Se ha actualizado ----------')
+                print('')
+                print('')
+
+        else:
+                print('[WARNING] Los registros no están actualizados, proceda con precaución')
+
+        return Pokemones
 
 def show_menu():
 
@@ -32,31 +178,6 @@ def show_menu():
 6- Salir del programa
 """)
 
-
-	while True: 
-		opcion = str(input(">> "))
-		if opcion == "1":
-			return 1
-			break
-
-		elif opcion == "2":
-			return 2
-			break
-
-		elif opcion == "3":
-			return 3
-			break
-
-		elif opcion =="4":
-			return 4
-			break
-
-		elif opcion=="5":
-			return 5
-		elif opcion=="6":
-			return 6
-		else:
-			print("Ingrese una opción valida. Intente escribir el número.")
 
 #fin de función showmenu()
 
@@ -135,11 +256,14 @@ def siono():
                         print("Ingrese una opción valida. Revise su ortografía.")
 
 
+#Lista con toda la información de los pokemones
+Pokemones = update()
 opcion=0
 
 while opcion!=6:
 
-        opcion=show_menu()
+        show_menu()
+        opcion=int(input())
         #de aquí vamos a hacer los procesos que apliquen para cada sección
 
 
@@ -170,6 +294,7 @@ while opcion!=6:
                                                 pokeOffline.printInfo(nombre)
                                                 print('')
                                         except:
+                                                pass
                                                 #error
                         
                         elif decIndiv==2:
@@ -256,7 +381,7 @@ while opcion!=6:
         elif opcion==2:
                 #consultar estadísticas
 		#Janis Aideé Reyna Garza
-		print(Estadisticas)
+                print(Estadisticas)
                 pass
 
 #----------------------------------------------------------------------
@@ -264,38 +389,23 @@ while opcion!=6:
         elif opcion==3:
                 #consultar gráficas
 		#Janis Aideé Reyna Garza
-		while True:
-	                r=int(input("¿Cuál de las siguientes gráficas deseas consultar?\n1.Gráfica de cantidad de pokemones por color\n2.Gráfica de cantidad de pokemones por tipo\n3.Gráfica de comparación sobre la generación 1 y generación 9 referente a cuantos tipos de pokemones hay\n Opción: "))
-			if r==1:
-				print(Gr_Dic_colores)
-			elif r==2:
-				print(Gr_Dic_tipos)
-			elif r==3:
-				print(Gr_Dic_gen_tip)
-			else:
-				print("Ingrese de nuevo")
+                while True:
+                        r=int(input("¿Cuál de las siguientes gráficas deseas consultar?\n1.Gráfica de cantidad de pokemones por color\n2.Gráfica de cantidad de pokemones por tipo\n3.Gráfica de comparación sobre la generación 1 y generación 9 referente a cuantos tipos de pokemones hay\n Opción: "))
+                        if r==1:
+                                print(Gr_Dic_colores)
+                        elif r==2:
+                                print(Gr_Dic_tipos)
+                        elif r==3:
+                                print(Gr_Dic_gen_tip)
+                        else:
+                                print("Ingrese de nuevo")
                 pass
 
 #------------------------------------------------------------------------
-
+        
+        ## Función Para actualizar los pokemnoes
         elif opcion==4:
-                #actualizar registros
-                #Daniel Cárdenas Adame
-                test=requests.get('https://pokeapi.co/api/v2/pokemon-color/1/').status_code
-                if test==200:
-                        
-                
-                        from registros import actualizarDatosPokeAPI as datosMod
-                        print('\n---------- Actualizando ----------')
-                        print('')
-                        datosMod.ACTUALIZAR()
-                        print('')
-                        print('---------- Se ha actualizado ----------')
-                        print('')
-                        print('')
-
-                else:
-                        print('Lo sentimos. Esta sección requiere una conexión a internet. Vuelva a intentar después.')
+                edite_menu()
 
 #------------------------------------------------------------------------
 
