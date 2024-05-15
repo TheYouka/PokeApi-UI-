@@ -49,6 +49,23 @@ def nameToNum(name,pokemones=abrirJson(os.path.join(pathRegistro,'GlobalData.txt
   except:
     return 0
 
+def printInfo(nombrePoke,pokeInfo=abrirJson(os.path.join(pathRegistro,'GlobalData.txt'))):
+  nombreMayus=nombrePoke.capitalize()
+  nombre=nombrePoke
+  print('-----'+nombreMayus+'-----')
+  print('Color: '+pokeInfo[nombre]['color'].capitalize())
+  if len(pokeInfo[nombre]['tipo'])==1:
+    print('Tipo: '+pokeInfo[nombre]['tipo'][0].capitalize())
+  elif len(pokeInfo[nombre]['tipo'])==2:
+    print('Tipos: '+pokeInfo[nombre]['tipo'][0].capitalize()+'-'+pokeInfo[nombre]['tipo'][1].capitalize())
+  if len(pokeInfo[nombre]['grupo'])==1:
+    print('Grupo de huevo: '+pokeInfo[nombre]['grupo'][0].capitalize())
+  elif len(pokeInfo[nombre]['grupo'])==2:
+    print('Grupos de huevo: '+pokeInfo[nombre]['grupo'][0].capitalize()+'-'+pokeInfo[nombre]['grupo'][1].capitalize())
+  print('Número Nacional: '+pokeInfo[nombre]['id'])
+  print('Hábitat: '+pokeInfo[nombre]['habitat'].capitalize())
+  print('-------------------------------')
+
 #Te dice el total de Pokémon antes de cierta generación.
 def genPrevTot(genNum):
   if genNum==1:
@@ -96,7 +113,6 @@ def genMin(genNum):
   else:
     prevTot=1026
   return prevTot
-  
 
 #Te dice la ID máxima de una generación
 def genMax(genNum):
@@ -128,7 +144,6 @@ def isInGen(idNum,gen):
   else:
     return False
     #fin
-
 
 
 
@@ -173,7 +188,6 @@ Ingrese el número correspondiente al color que desea modificar:
 
   #Validad datos 
   pass
-
 
 
 
