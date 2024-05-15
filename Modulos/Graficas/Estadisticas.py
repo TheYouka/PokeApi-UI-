@@ -1,3 +1,25 @@
+def ejecutarmenu(): 
+    while True:
+        print("\nSeleccione una opción:\n1.Cantidad de pokemones por color\n2.El color que tiene más pokemones\n3.Cantidad de pokemones por su grupo de huevo\n4.El grupo de huevo con más pokemones\n5.La cantidad de cada hábitat\n6.Exit")
+        r1=int(input("Opción: "))
+        if r1==1:
+            cua_cada(wb,ws,dic)
+        elif r1==2:
+            printmodaco(ws,ind,ma)
+        elif r1==3:
+            cgp(pagina3,nongh)
+        elif r1==4:
+            printgpp(nongh,ma,ngh,pagina3)
+        elif r1==5:
+            path=os.path.join(os.path.dirname(__file__), 'Habitats.xlsx')
+            wb2=load_workbook(filename=path)
+            ws2=wb2.active
+            porch(ws2)
+        elif r1==6:
+            return
+        else:
+            pass
+            print("Ingrese una de las opciones brindadas")
 def modaco(wb,ws):
     s=-1
     listas={}
@@ -113,7 +135,6 @@ def porch(ws2):
 
         else:
             print("Ingrese de nuevo")
-    wb2.save("Habitats.xlsx")
 def cgp(ws3,nongh):
     while True:
         r=int(input("Seleccione una opción:\n1.Vizualizar la cantidad de todos los grupos de huevos\n2.Visualizar un cierto tipo\n3.Volver al menú\nOpción: "))
@@ -147,8 +168,6 @@ def pricgp(ws3,nongh):
             print("El grupo de huevo "+str(opc[u])+" contiene "+str(va)+" pokemones")
         else:
             print("Intente de nuevo\n")
-    
-
 def gpp(pagina3):
     s=-1
     ngh={}
@@ -188,30 +207,12 @@ def printgpp(nongh,ma,ngh,pagina3):
 from openpyxl import load_workbook
 from openpyxl import Workbook
 import difflib
-wb =load_workbook("GrColor.xlsx")
+path=os.path.join(os.path.dirname(__file__), 'GrColor.xlsx')
+wb =load_workbook(filename=path)
 ws = wb.active
 ind, ma,dic=modaco(wb,ws)
-worbe=load_workbook("Gpohvs.xlsx")
+path=os.path.join(os.path.dirname(__file__), 'Gpohvs.xlsx')
+worbe=load_workbook(filename=path)
 pagina3=worbe.active
 nongh,ma,ngh,pagina3=gpp(pagina3)
-while True:
-    r1=int(input("\nSeleccione una opción:\n1.Cantidad de pokemones por color\n2.El color que tiene más pokemones\n3.Cantidad de pokemones por su grupo de huevo\n4.El grupo de huevo con más pokemones\n5.El cantidad de cada hábitat\n6.Exit\nOpción: "))
-    try:
-        if r1==1:
-            cua_cada(wb,ws,dic)
-        elif r1==2:
-            printmodaco(ws,ind,ma)
-        elif r1==3:
-            cgp(pagina3,nongh)
-        elif r1==4:
-            printgpp(nongh,ma,ngh,pagina3)
-        elif r1==5:
-            wb2=load_workbook("Habitats.xlsx")
-            ws2=wb2.active
-            porch(ws2)
-        elif r1==6:
-            return
-        else:
-            print("Ingrese una de las opciones brindadas")
-    except r1<1 or r1>6:
-                continue
+ejecutarmenu()
