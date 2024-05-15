@@ -137,3 +137,4 @@ ax.set_xticklabels(etiquetas, rotation=90)
 plt.legend()
 
 plt.show()
+return
