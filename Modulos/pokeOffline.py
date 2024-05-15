@@ -71,11 +71,12 @@ def genPrevTot(genNum):
     prevTot=905
   else:
     prevTot=1025
+  return prevTot
 
 #Te dice la ID mínima de una generación
 def genMin(genNum):
   if genNum==1:
-    genMin=1
+    prevTot=1
   elif genNum==2:
     prevTot=152
   elif genNum==3:
@@ -94,11 +95,13 @@ def genMin(genNum):
     prevTot=906
   else:
     prevTot=1026
+  return prevTot
+  
 
 #Te dice la ID máxima de una generación
 def genMax(genNum):
   if genNum==1:
-    genMin=151
+    prevTot=151
   elif genNum==2:
     prevTot=251
   elif genNum==3:
@@ -117,6 +120,7 @@ def genMax(genNum):
     prevTot=1025
   else:
     prevTot=9999
+  return prevTot
 
 def isInGen(idNum,gen):
   if idNum<=genMax(gen) and idNum>=genMin(gen):
