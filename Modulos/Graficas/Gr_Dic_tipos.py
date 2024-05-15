@@ -1,8 +1,10 @@
 from openpyxl import load_workbook
 from openpyxl import Workbook
 import matplotlib.pyplot as plt
+import os
 #grafica de pastel de tipos de pokemones
-wb =load_workbook("GrType.xlsx")
+path=os.path.join(os.path.dirname(__file__), 'GrType.xlsx')
+wb =load_workbook(filename=path)
 ws = wb.active
 s=-1
 listas={}
@@ -42,5 +44,5 @@ plt.pie(porcentajes_tip, labels=titulos, autopct="%1.1f%%", startangle=90)
 plt.axis("equal")
 plt.title("Cantidad de Pokemones de cada tipo")
 plt.show()
-wb.save("GrType.xlsx")
+wb.save(filename=path)
 return
