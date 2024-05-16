@@ -4,16 +4,46 @@ import json
 import requests
 import openpyxl
 import os
-import random
 
-from Modulos.Graficas import Gr_Dic_tipos
-from Modulos.Graficas import Gr_Dic_gen_tip
+def saveThisTo(jsonDic,archivo):
+        with open(archivo, 'w') as file:
+                json.dump(jsonDic,file)
+        a=0
+        #se cierra función
+
+def isOnline():
+        test=requests.get('https://pokeapi.co/api/v2/pokemon-color/1/').status_code
+        if test==200:
+                return True
+        else:
+                return False
+        
+        
+
 from Modulos.Graficas import Gr_Dic_colores
+from Modulos.Graficas import Gr_Dic_colores_Gen as colorGrafGen
+from Modulos.Graficas import Gr_Dic_tipos
+from Modulos.Graficas import Gr_Dic_tipos_Gen as tiposGrafGen
+from Modulos.Graficas import Gr_Dic_gen_tip_Gen as grafCompararGen
+from Modulos.Graficas import habilidadesPokemon
 from Modulos.Graficas import Estadisticas
 
-from registros import actualizarDatosPokeAPI as datosMod
+
+
 
 path=os.getcwd()
+pathRegistro=os.path.join(path,'registros')
+
+def checkCrear(filename, jsonDic):
+    # Verificar si el archivo existe
+    if not os.path.exists(filename):
+        # Si el archivo no existe, crearlo y asignarle el contenido
+        with open(filename, 'w') as file:
+            json.dump(jsonDic,file)
+    else:
+            a=0
+            #no hacer nada
+
 
 print("################# ¡Bienvenido a la PokéAPI! #################",end="\n\n")
 print("¡Una app para conocer todo sobre los Pokémon!")
@@ -142,8 +172,7 @@ def edite_menu():
 
 
 def update():
-        test=requests.get('https://pokeapi.co/api/v2/pokemon-color/1/').status_code
-        if test==200:
+        if isOnline():
                 
 
                 
@@ -262,6 +291,9 @@ opcion=0
 
 while opcion!=6:
 
+	checkCrear(os.path.join(pathRegistro,'GrFila.txt'),{'color':1,'tipo':1,'tipoGen':1,'habilidad':1})
+        GrFila=pokeOffline.abrirRegistro('GrFila.txt')
+	
         show_menu()
         opcion=int(input())
         #de aquí vamos a hacer los procesos que apliquen para cada sección
@@ -380,26 +412,157 @@ while opcion!=6:
 
         elif opcion==2:
                 #consultar estadísticas
-		#Janis Aideé Reyna Garza
-                print(Estadisticas)
-                pass
+                #Janis Aideé Reyna Garza
+                Estadisticas.estadisticas()
 
 #----------------------------------------------------------------------
 
         elif opcion==3:
-                #consultar gráficas
-		#Janis Aideé Reyna Garza
+               #consultar gráficas
+                #Janis Aideé Reyna Garza
                 while True:
-                        r=int(input("¿Cuál de las siguientes gráficas deseas consultar?\n1.Gráfica de cantidad de pokemones por color\n2.Gráfica de cantidad de pokemones por tipo\n3.Gráfica de comparación sobre la generación 1 y generación 9 referente a cuantos tipos de pokemones hay\n Opción: "))
+                        try:
+                                print("\n¿Cuál de las siguientes gráficas deseas consultar?\n1. Gráfica de cantidad de Pokémon por color\n2. Gráfica de cantidad de Pokémon por tipo\n3. Gráfica de comparación sobre la cantidad de tipos de dos generaciones")
+                                if isOnline():
+                                        print('4. Gráfica de habilidades de un Pokémon')
+                                r=int(input(">> "))
+                        except:
+                                r=0
+                        if r==4:
+                                if isOnline():
+                                        r=4
+                                else:
+                                        r=0
+                        #listo, se validó las opciones
                         if r==1:
-                                print(Gr_Dic_colores)
+                                gen=str(input('\nIngrese la generación que quiera analizar. Si quiere analizar todas, ingrese 0.\n>> '))
+                                if gen.isdigit():
+                                        gen=int(gen)
+                                        if gen>=1 and gen<=9:
+                                                gen=gen
+                                        else:
+                                                gen=0
+                                else:
+                                        gen=0
+                                if gen==0:
+
+                                        Gr_Dic_colores.grafColor(GrFila['color'])
+                                        print('')
+                                        print('Listo. Se guardó la gráfica en la hoja de "Color" en el Excel "Gráficas.xlsx" dentro de las Consultas')
+                                        GrFila['color']+=30
+                                        print('')
+                                        saveThisTo(GrFila,os.path.join(pathRegistro,'GrFila.txt'))
+                                        
+                                        break
+                                else:
+                                        if colorGrafGen.grafColor(gen,GrFila['color']):
+                                                #guardando las filas correspondientes
+                                                print('')
+                                                print('Listo. Se guardó la gráfica en la hoja de "Color" en el Excel "Gráficas.xlsx" dentro de las Consultas')
+                                                GrFila['color']+=30
+                                                print('')
+                                                saveThisTo(GrFila,os.path.join(pathRegistro,'GrFila.txt'))
+                                                break
+                                        else:
+                                                print('Error.')
+                                
+                                
                         elif r==2:
-                                print(Gr_Dic_tipos)
+
+                                gen=str(input('\nIngrese la generación que quiera analizar. Si quiere analizar todas, ingrese 0.\n>> '))
+                                if gen.isdigit():
+                                        gen=int(gen)
+                                        if gen>=1 and gen<=9:
+                                                gen=gen
+                                        else:
+                                                gen=0
+                                else:
+                                        gen=0
+                                if gen==0:
+
+                                        Gr_Dic_tipos.grafTipos(GrFila['tipo'])
+                                        print('')
+                                        print('Listo. Se guardó la gráfica en la hoja de "Tipos" en el Excel "Gráficas.xlsx" dentro de las Consultas')
+                                        GrFila['tipo']+=30
+                                        print('')
+                                        saveThisTo(GrFila,os.path.join(pathRegistro,'GrFila.txt'))
+                                        
+                                        break
+                                else:
+                                        if tiposGrafGen.grafTipos(gen,GrFila['tipo']):
+                                                #guardando las filas correspondientes
+                                                print('')
+                                                print('Listo. Se guardó la gráfica en la hoja de "Tipos" en el Excel "Gráficas.xlsx" dentro de las Consultas')
+                                                GrFila['tipo']+=30
+                                                print('')
+                                                saveThisTo(GrFila,os.path.join(pathRegistro,'GrFila.txt'))
+                                                break
+                                        else:
+                                                print('Error.')
+                                
                         elif r==3:
-                                print(Gr_Dic_gen_tip)
+
+                                gen1=globalMod.minmaxInt('\nIngrese la primera generación por analizar.\n>> ',minVal=1,maxVal=9)
+                                while True:
+                                        gen2=globalMod.minmaxInt('\nIngrese la segunda generación por analizar.\n>> ',minVal=1,maxVal=9)
+                                        if gen2==gen1:
+                                                print('\nLas generaciones que escogió son las mismas. Vuelva a intentar.\n>>')
+                                                continue
+                                        else:
+                                                break
+
+                                if grafCompararGen.compararTipos(gen1,gen2,GrFila['tipoGen']):
+                                        #Esto va antes de un break
+                                        GrFila['tipoGen']+=30
+                                        print('')
+                                        print('Listo. Se guardó la gráfica en la hoja de "Comparaciones de tipos" en el Excel "Gráficas.xlsx" dentro de las Consultas')
+                                        print('')
+                                        saveThisTo(GrFila,os.path.join(pathRegistro,'GrFila.txt'))
+                                        break
+                                else:
+                                        print('Error.')
+
+                        elif r==4 and isOnline():
+                                print('\nIngrese el nombre o el número nacional de un Pokémon')
+                                while True:
+                                        poke=str(input('>> '))
+                                        if poke.isdigit():
+                                                try:
+                                                        name=pokeOffline.numToName(poke).capitalize()
+                                                except:
+                                                        print('\nHubo un error. Puede que ese Pokémon no exista. Vuelva a intentar.\n')
+                                                        continue
+                                                else:
+                                                        num=poke
+                                                        break
+                                        else:
+                                                try:
+                                                        num=pokeOffline.nameToNum(poke)
+                                                except:
+                                                        print('\nHubo un error. Puede que ese Pokémon no exista. Vuelva a intentar.\n')
+                                                        continue
+                                                else:
+                                                        name=poke.capitalize()
+                                                        break
+                                #####imprimiendo la gráfica del pokemon
+                                stats=habilidadesPokemon.getStats(num)
+                                if habilidadesPokemon.graphStats(stats,name,fila=GrFila['habilidad']):
+                                        #Esto va antes de un break
+                                        GrFila['habilidad']+=30
+                                        print('')
+                                        print('Listo. Se guardó la gráfica en la hoja de "Habilidades" en el Excel "Gráficas.xlsx" dentro de las Consultas')
+                                        print('')
+                                        saveThisTo(GrFila,os.path.join(pathRegistro,'GrFila.txt'))
+                                        break
+                                else:
+                                        print('Error.')
+                                        
+                                
+
+                                        
                         else:
-                                print("Ingrese de nuevo")
-                pass
+                                print("Ingrese de nuevo.")
+                                continue
 
 #------------------------------------------------------------------------
         
