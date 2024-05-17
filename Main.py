@@ -446,14 +446,16 @@ while opcion!=6:
                                         gen=0
                                 if gen==0:
 
-                                        Gr_Dic_colores.grafColor(GrFila['color'])
-                                        print('')
-                                        print('Listo. Se guardó la gráfica en la hoja de "Color" en el Excel "Gráficas.xlsx" dentro de las Consultas')
-                                        GrFila['color']+=30
-                                        print('')
-                                        saveThisTo(GrFila,os.path.join(pathRegistro,'GrFila.txt'))
-                                        
-                                        break
+                                        if Gr_Dic_colores.grafColor(GrFila['color']):
+	                                        print('')
+	                                        print('Listo. Se guardó la gráfica en la hoja de "Color" en el Excel "Gráficas.xlsx" dentro de las Consultas')
+	                                        GrFila['color']+=30
+	                                        print('')
+	                                        saveThisTo(GrFila,os.path.join(pathRegistro,'GrFila.txt'))
+						break
+					else:
+						print('Error. Intente cerrar el archivo de Excel para que se guarde.')
+						
                                 else:
                                         if colorGrafGen.grafColor(gen,GrFila['color']):
                                                 #guardando las filas correspondientes
@@ -464,7 +466,7 @@ while opcion!=6:
                                                 saveThisTo(GrFila,os.path.join(pathRegistro,'GrFila.txt'))
                                                 break
                                         else:
-                                                print('Error.')
+                                                print('Error. Intente cerrar el archivo de Excel para que se guarde.')
                                 
                                 
                         elif r==2:
@@ -480,14 +482,15 @@ while opcion!=6:
                                         gen=0
                                 if gen==0:
 
-                                        Gr_Dic_tipos.grafTipos(GrFila['tipo'])
-                                        print('')
-                                        print('Listo. Se guardó la gráfica en la hoja de "Tipos" en el Excel "Gráficas.xlsx" dentro de las Consultas')
-                                        GrFila['tipo']+=30
-                                        print('')
-                                        saveThisTo(GrFila,os.path.join(pathRegistro,'GrFila.txt'))
-                                        
-                                        break
+                                        if Gr_Dic_tipos.grafTipos(GrFila['tipo']):
+	                                        print('')
+	                                        print('Listo. Se guardó la gráfica en la hoja de "Tipos" en el Excel "Gráficas.xlsx" dentro de las Consultas')
+	                                        GrFila['tipo']+=30
+	                                        print('')
+	                                        saveThisTo(GrFila,os.path.join(pathRegistro,'GrFila.txt'))
+						break
+					else:
+						print('Error. Intente cerrar el archivo de Excel para que se guarde.')
                                 else:
                                         if tiposGrafGen.grafTipos(gen,GrFila['tipo']):
                                                 #guardando las filas correspondientes
@@ -498,7 +501,7 @@ while opcion!=6:
                                                 saveThisTo(GrFila,os.path.join(pathRegistro,'GrFila.txt'))
                                                 break
                                         else:
-                                                print('Error.')
+                                                print('Error. Intente cerrar el archivo de Excel para que se guarde.')
                                 
                         elif r==3:
 
