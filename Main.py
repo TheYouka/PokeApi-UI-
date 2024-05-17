@@ -326,12 +326,47 @@ while opcion!=6:
                                                 pokeOffline.printInfo(nombre)
                                                 print('')
                                         except:
-                                                pass
+                                                print('Error.')
+						pass
                                                 #error
                         
                         elif decIndiv==2:
-                                #imprimir info de un solo pokemon
-                                pass
+                                #imprimir la info de un solo pokemon
+                                verif=0
+                                while verif==0:
+
+                                        pokemon=str(input('\nIngrese el nombre o el número de un Pokémon.\n>> ')).lower()
+                                        
+                                        if str(pokemon).isdigit():
+                                                #ingresó un número
+                                                pokemon=int(pokemon)
+                                                try:
+                                                        #sí está en la generación
+                                                        nombre=pokeOffline.numToName(pokemon)
+                                                        verif=1
+                                                except:
+                                                        print('Error. Vuelva a intentar. Puede que ese Pokémon no sea válido.')
+                                                        verif=0
+
+                                        else:
+                                                try:
+                                                        numero=int(pokeInfo[pokemon]['id'])
+							nombre=pokemon
+                                                        
+                                                except:
+                                                        print('Error. Vuelva a intentar. Puede que ese Pokémon no sea válido.')
+                                                        verif=0
+
+                                        if verif!=0:
+                                                nombreMayus=nombre.capitalize()
+                                                print('')
+                                                pokeOffline.printInfo(nombre)
+                                                print('')
+                                                print('¿Desea ingresar otro Pokémon?')
+                                                verif=siono()-1
+                                                print('')
+                                        else:
+                                                continue
                         else:
                                 print('Error')
                 
@@ -348,12 +383,22 @@ while opcion!=6:
                         decIndiv=menuIndivOrTodos()
 
                         if decIndiv==1:
-                                #imprimir toda la info de la generación
-                                pass
+                                #imprimir la info de todos los pokemones
+                                for i in range(genMin,genMax+1):
+                                        try:
+                                                nombre=pokeOffline.numToName(i)
+                                                print('')
+                                                pokeOffline.printInfo(nombre)
+                                                print('')
+                                        except:
+                                                print('')
+						pass
+                                                #error
                         
                         elif decIndiv==2:
                                 #imprimir la info de un solo pokemon
                                 verif=0
+				checkPoke=[]
                                 while verif==0:
 
                                         pokemon=str(input('\nIngrese el nombre o el número de un Pokémon de la generación '+str(gen)+'.\n>> ')).lower()
@@ -385,7 +430,8 @@ while opcion!=6:
                                                         verif=0
 
                                         if verif!=0:
-                                                nombreMayus=nombre.capitalize()
+                                                checkPoke.append(nombre)
+						nombreMayus=nombre.capitalize()
                                                 print('')
                                                 pokeOffline.printInfo(nombre)
                                                 print('')
@@ -394,6 +440,19 @@ while opcion!=6:
                                                 print('')
                                         else:
                                                 continue
+				print('¿Desea guardar esta información en las consultas?')
+				verif=siono()
+				if verif==1:
+					##guardar en excel
+					try:
+						##procedimiento aqui
+						print('Listo, se ha guardado en el Excel de "Información" en la carpeta de Consultas.')
+					except:
+						print('Error. Intente cerrar el archivo de Excel.')
+				checkPoke=[]
+					
+					
+					
                                         
 
 
