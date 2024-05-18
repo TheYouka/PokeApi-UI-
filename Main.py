@@ -386,6 +386,7 @@ while opcion!=6:
                                                 try:
                                                         numero=int(pokeInfo[pokemon]['id'])
                                                         nombre=pokemon
+                                                        verif=1
                                                         
                                                 except:
                                                         print('Error. Vuelva a intentar. Puede que ese Pokémon no sea válido.')
