@@ -239,8 +239,6 @@ def menuConsultar():
 1- Consultar información de cualquier Pokémon
 
 2- Consultar información de Pokémon por generación
-
-3- Agregar información de un Pokémon nuevo
 """)
 
 
