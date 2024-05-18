@@ -27,6 +27,7 @@ from Modulos.Graficas import Gr_Dic_tipos_Gen as tiposGrafGen
 from Modulos.Graficas import Gr_Dic_gen_tip_Gen as grafCompararGen
 from Modulos.Graficas import habilidadesPokemon
 from Modulos.Graficas import Estadisticas
+from Modulos.Graficas import tablaPokeProp
 
 
 
@@ -285,6 +286,7 @@ def siono():
                         print("Ingrese una opción valida. Revise su ortografía.")
 
 
+
 #Lista con toda la información de los pokemones
 Pokemones = update()
 opcion=0
@@ -329,10 +331,21 @@ while opcion!=6:
                                                 print('Error.')
 						pass
                                                 #error
+				print('¿Desea guardar esta información en las consultas?')
+				verif=siono()
+				if verif==1:
+					##guardar en excel
+					for i in range(1,totPoke+1):
+						name=numToName(i)
+						if tablaPokeProp.guardarPoke(name,pokeInfo[name],hoja='Nacional'):
+							print('Listo, se ha guardado en el Excel de "Información" en la carpeta de Consultas. La hoja es "Nacional"')
+						else:
+							print('Error. Intente cerrar el archivo de Excel.')
                         
                         elif decIndiv==2:
                                 #imprimir la info de un solo pokemon
                                 verif=0
+				checkPoke[]
                                 while verif==0:
 
                                         pokemon=str(input('\nIngrese el nombre o el número de un Pokémon.\n>> ')).lower()
@@ -356,8 +369,9 @@ while opcion!=6:
                                                 except:
                                                         print('Error. Vuelva a intentar. Puede que ese Pokémon no sea válido.')
                                                         verif=0
-
+					
                                         if verif!=0:
+						checkPoke.append(nombre)
                                                 nombreMayus=nombre.capitalize()
                                                 print('')
                                                 pokeOffline.printInfo(nombre)
@@ -365,8 +379,25 @@ while opcion!=6:
                                                 print('¿Desea ingresar otro Pokémon?')
                                                 verif=siono()-1
                                                 print('')
+
+						if verif==1:
+							print('¿Desea guardar esta información en las consultas?')
+							verif=siono()
+							if verif==1:
+								##guardar en excel
+								for pokemonName in checkPoke:
+									if tablaPokeProp.guardarPoke(pokemonName,pokeInfo[pokemonName],hoja='Individuales'):
+										print('Listo, se ha guardado en el Excel de "Información" en la carpeta de Consultas. La hoja es "Individuales"')
+									else:
+										print('Error. Intente cerrar el archivo de Excel.')
+
+						checkPoke=[]
+
+					
                                         else:
                                                 continue
+	
+					
                         else:
                                 print('Error')
                 
@@ -394,6 +425,16 @@ while opcion!=6:
                                                 print('')
 						pass
                                                 #error
+				print('¿Desea guardar esta información en las consultas?')
+				verif=siono()
+				if verif==1:
+					##guardar en excel
+					for i in range(genMin,genMax+1):
+						name=numToName(i)
+						if tablaPokeProp.guardarPoke(name,pokeInfo[name],hoja='Generación '+str(i)):
+							print('Listo, se ha guardado en el Excel de "Información" en la carpeta de Consultas. La hoja es "Generación '+str(i)+'"')
+						else:
+							print('Error. Intente cerrar el archivo de Excel.')
                         
                         elif decIndiv==2:
                                 #imprimir la info de un solo pokemon
@@ -444,11 +485,11 @@ while opcion!=6:
 				verif=siono()
 				if verif==1:
 					##guardar en excel
-					try:
-						##procedimiento aqui
-						print('Listo, se ha guardado en el Excel de "Información" en la carpeta de Consultas.')
-					except:
-						print('Error. Intente cerrar el archivo de Excel.')
+					for pokemonName in checkPoke:
+						if tablaPokeProp.guardarPoke(pokemonName,pokeInfo[pokemonName],hoja='Individuales'):
+							print('Listo, se ha guardado en el Excel de "Información" en la carpeta de Consultas. La hoja es "Individuales"')
+						else:
+							print('Error. Intente cerrar el archivo de Excel.')
 				checkPoke=[]
 					
 					
