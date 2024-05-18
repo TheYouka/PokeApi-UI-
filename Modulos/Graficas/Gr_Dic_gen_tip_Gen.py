@@ -6,10 +6,7 @@ import os
 import numpy as np
 path=os.getcwd()
 
-if path[-33:-17]=='PokeApi-UI--main':
-    import pokeOffline as off
-elif path[-16:]=='PokeApi-UI--main':
-    from Modulos import pokeOffline as off
+from Modulos import pokeOffline as off
 
 def compararTipos(gen1=1,gen2=9,fila=1,archivo='Gráficas.xlsx'):
 
