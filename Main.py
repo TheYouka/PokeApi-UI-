@@ -333,7 +333,7 @@ while opcion!=6:
                         print('')
                         genList=[]
                         for i in range(1,11):
-                                genList+=abrirRegistro('Gen'+str(i)+'.txt')
+                                genList+=pokeOffline.abrirRegistro('Gen'+str(i)+'.txt')
                         totPoke=len(genList)
                         decIndiv=menuIndivOrTodos()
 
