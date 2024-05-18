@@ -1,5 +1,6 @@
 from Modulos import pokeOffline
 from Modulos import globalMod
+from registros import actualizarDatosPokeAPI as datosMod
 import json
 import requests
 import openpyxl
@@ -174,9 +175,6 @@ def edite_menu():
 
 def update():
         if isOnline():
-                
-
-                
                 print('---------- Actualizando ----------')
                 print('')
                 Pokemones = datosMod.ACTUALIZAR()
@@ -192,8 +190,8 @@ def update():
 
 def show_menu():
 
-	#Imprimir Opciones
-	print("""Seleccione una de las siguientes opciones:
+        #Imprimir Opciones
+        print("""Seleccione una de las siguientes opciones:
 
 1- Consultar información sobre los Pokémon
 
@@ -208,6 +206,25 @@ def show_menu():
 6- Salir del programa
 """)
 
+        while True:
+                        
+                seleccion=str(input('>> '))
+
+                if seleccion=='1':
+                        return 1
+                elif seleccion=='2':
+                        return 2
+                elif seleccion =='3':
+                        return 3
+                elif seleccion=='4':
+                        return 4
+                elif seleccion=='5':
+                        return 5
+                elif seleccion=='6':
+                        return 6
+                else:
+                        print('Vuelva a intentar. Intente escribir el número.')
+
 
 #fin de función showmenu()
 
@@ -215,7 +232,7 @@ def show_menu():
 def menuConsultar():
 
         #Imprimir Opciones
-	print("""Seleccione una de las siguientes opciones:
+        print("""Seleccione una de las siguientes opciones:
 
 1- Consultar información de cualquier Pokémon
 
@@ -225,28 +242,28 @@ def menuConsultar():
 """)
 
 
-	while True: 
-		opcion = str(input(">> "))
-		if opcion == "1":
-			return 1
-			break
+        while True: 
+                opcion = str(input(">> "))
+                if opcion == "1":
+                        return 1
+                        break
 
-		elif opcion == "2":
-			return 2
-			break
+                elif opcion == "2":
+                        return 2
+                        break
 
-		elif opcion == "3":
-			return 3
-			break
-		
-		else:
-			print("Ingrese una opción valida. Intente escribir el número.")
+                elif opcion == "3":
+                        return 3
+                        break
+                
+                else:
+                        print("Ingrese una opción valida. Intente escribir el número.")
 
 #fin de función menuConsultar()
 
 def menuIndivOrTodos():
         #Imprimir Opciones
-	print("""Seleccione lo que quiere hacer:
+        print("""Seleccione lo que quiere hacer:
 
 1- Imprimir la información de todos los Pokémon.
 
@@ -254,18 +271,18 @@ def menuIndivOrTodos():
 """)
 
 
-	while True: 
-		opcion = str(input(">> "))
-		if opcion == "1":
-			return 1
-			break
+        while True: 
+                opcion = str(input(">> "))
+                if opcion == "1":
+                        return 1
+                        break
 
-		elif opcion == "2":
-			return 2
-			break
-		
-		else:
-			print("Ingrese una opción valida. Intente escribir el número.")
+                elif opcion == "2":
+                        return 2
+                        break
+                
+                else:
+                        print("Ingrese una opción valida. Intente escribir el número.")
 
 #fin de función menuIndivOrTodos()
 
@@ -286,18 +303,17 @@ def siono():
                         print("Ingrese una opción valida. Revise su ortografía.")
 
 
+Pokemones=pokeOffline.abrirRegistro('GlobalData.txt')
 
-#Lista con toda la información de los pokemones
-Pokemones = update()
 opcion=0
 
 while opcion!=6:
 
-	checkCrear(os.path.join(pathRegistro,'GrFila.txt'),{'color':1,'tipo':1,'tipoGen':1,'habilidad':1})
+        checkCrear(os.path.join(pathRegistro,'GrFila.txt'),{'color':1,'tipo':1,'tipoGen':1,'habilidad':1})
         GrFila=pokeOffline.abrirRegistro('GrFila.txt')
-	
-        show_menu()
-        opcion=int(input())
+        
+        opcion=show_menu()
+        
         #de aquí vamos a hacer los procesos que apliquen para cada sección
 
 
@@ -329,23 +345,26 @@ while opcion!=6:
                                                 print('')
                                         except:
                                                 print('Error.')
-						pass
+                                                pass
                                                 #error
-				print('¿Desea guardar esta información en las consultas?')
-				verif=siono()
-				if verif==1:
-					##guardar en excel
-					for i in range(1,totPoke+1):
-						name=numToName(i)
-						if tablaPokeProp.guardarPoke(name,pokeInfo[name],hoja='Nacional'):
-							print('Listo, se ha guardado en el Excel de "Información" en la carpeta de Consultas. La hoja es "Nacional"')
-						else:
-							print('Error. Intente cerrar el archivo de Excel.')
+                                print('¿Desea guardar esta información en las consultas?')
+                                verif=siono()
+                                if verif==1:
+                                        ##guardar en excel
+                                        print('\nEspere un momento')
+                                        for i in range(1,totPoke+1):
+                                                name=pokeOffline.numToName(i)
+                                                if tablaPokeProp.guardarPoke(name,pokeInfo[name],hoja='Nacional'):
+                                                        verifPoke=1
+                                                else:
+                                                        print('Error. Intente cerrar el archivo de Excel.')
+                                        if verifPoke==1:
+                                                print('Listo, se ha guardado en el Excel de "Información" en la carpeta de Consultas. La hoja es "Nacional"\n')
                         
                         elif decIndiv==2:
                                 #imprimir la info de un solo pokemon
                                 verif=0
-				checkPoke[]
+                                checkPoke=[]
                                 while verif==0:
 
                                         pokemon=str(input('\nIngrese el nombre o el número de un Pokémon.\n>> ')).lower()
@@ -364,14 +383,14 @@ while opcion!=6:
                                         else:
                                                 try:
                                                         numero=int(pokeInfo[pokemon]['id'])
-							nombre=pokemon
+                                                        nombre=pokemon
                                                         
                                                 except:
                                                         print('Error. Vuelva a intentar. Puede que ese Pokémon no sea válido.')
                                                         verif=0
-					
+                                        
                                         if verif!=0:
-						checkPoke.append(nombre)
+                                                checkPoke.append(nombre)
                                                 nombreMayus=nombre.capitalize()
                                                 print('')
                                                 pokeOffline.printInfo(nombre)
@@ -380,24 +399,26 @@ while opcion!=6:
                                                 verif=siono()-1
                                                 print('')
 
-						if verif==1:
-							print('¿Desea guardar esta información en las consultas?')
-							verif=siono()
-							if verif==1:
-								##guardar en excel
-								for pokemonName in checkPoke:
-									if tablaPokeProp.guardarPoke(pokemonName,pokeInfo[pokemonName],hoja='Individuales'):
-										print('Listo, se ha guardado en el Excel de "Información" en la carpeta de Consultas. La hoja es "Individuales"')
-									else:
-										print('Error. Intente cerrar el archivo de Excel.')
+                                                if verif==1:
+                                                        print('¿Desea guardar esta información en las consultas?')
+                                                        verif=siono()
+                                                        if verif==1:
+                                                                ##guardar en excel
+                                                                for pokemonName in checkPoke:
+                                                                        if tablaPokeProp.guardarPoke(pokemonName,pokeInfo[pokemonName],hoja='Individuales'):
+                                                                                verifPoke=1
+                                                                        else:
+                                                                                print('Error. Intente cerrar el archivo de Excel.')
+                                                                if verifPoke==1:
+                                                                        print('Listo, se ha guardado en el Excel de "Información" en la carpeta de Consultas. La hoja es "Individuales"\n')
 
-						checkPoke=[]
+                                                checkPoke=[]
 
-					
+                                        
                                         else:
                                                 continue
-	
-					
+        
+                                        
                         else:
                                 print('Error')
                 
@@ -423,23 +444,26 @@ while opcion!=6:
                                                 print('')
                                         except:
                                                 print('')
-						pass
+                                                pass
                                                 #error
-				print('¿Desea guardar esta información en las consultas?')
-				verif=siono()
-				if verif==1:
-					##guardar en excel
-					for i in range(genMin,genMax+1):
-						name=numToName(i)
-						if tablaPokeProp.guardarPoke(name,pokeInfo[name],hoja='Generación '+str(i)):
-							print('Listo, se ha guardado en el Excel de "Información" en la carpeta de Consultas. La hoja es "Generación '+str(i)+'"')
-						else:
-							print('Error. Intente cerrar el archivo de Excel.')
+                                print('¿Desea guardar esta información en las consultas?')
+                                verif=siono()
+                                if verif==1:
+                                        ##guardar en excel
+                                        print('Espere un momento.')
+                                        for i in range(genMin,genMax+1):
+                                                name=pokeOffline.numToName(i)
+                                                if tablaPokeProp.guardarPoke(name,pokeInfo[name],hoja='Generación '+str(gen)):
+                                                        verifPoke=1
+                                                else:
+                                                        print('Error. Intente cerrar el archivo de Excel.')
+                                        if verifPoke==1:
+                                                print('Listo, su información se encuentra en la hoja de "Generación '+str(gen)+'" dentro del Excel de "Información" en la carpeta de Consultas\n')
                         
                         elif decIndiv==2:
                                 #imprimir la info de un solo pokemon
                                 verif=0
-				checkPoke=[]
+                                checkPoke=[]
                                 while verif==0:
 
                                         pokemon=str(input('\nIngrese el nombre o el número de un Pokémon de la generación '+str(gen)+'.\n>> ')).lower()
@@ -472,7 +496,7 @@ while opcion!=6:
 
                                         if verif!=0:
                                                 checkPoke.append(nombre)
-						nombreMayus=nombre.capitalize()
+                                                nombreMayus=nombre.capitalize()
                                                 print('')
                                                 pokeOffline.printInfo(nombre)
                                                 print('')
@@ -481,19 +505,21 @@ while opcion!=6:
                                                 print('')
                                         else:
                                                 continue
-				print('¿Desea guardar esta información en las consultas?')
-				verif=siono()
-				if verif==1:
-					##guardar en excel
-					for pokemonName in checkPoke:
-						if tablaPokeProp.guardarPoke(pokemonName,pokeInfo[pokemonName],hoja='Individuales'):
-							print('Listo, se ha guardado en el Excel de "Información" en la carpeta de Consultas. La hoja es "Individuales"')
-						else:
-							print('Error. Intente cerrar el archivo de Excel.')
-				checkPoke=[]
-					
-					
-					
+                                print('¿Desea guardar esta información en las consultas?')
+                                verif=siono()
+                                if verif==1:
+                                        ##guardar en excel
+                                        for pokemonName in checkPoke:
+                                                if tablaPokeProp.guardarPoke(pokemonName,pokeInfo[pokemonName],hoja='Individuales'):
+                                                        verifPoke=1
+                                                else:
+                                                        print('Error. Intente cerrar el archivo de Excel.')
+                                        if verifPoke==1:
+                                                print('Listo, se ha guardado en el Excel de "Información" en la carpeta de Consultas. La hoja es "Individuales"')
+                                checkPoke=[]
+                                        
+                                        
+                                        
                                         
 
 
@@ -547,15 +573,15 @@ while opcion!=6:
                                 if gen==0:
 
                                         if Gr_Dic_colores.grafColor(GrFila['color']):
-	                                        print('')
-	                                        print('Listo. Se guardó la gráfica en la hoja de "Color" en el Excel "Gráficas.xlsx" dentro de las Consultas')
-	                                        GrFila['color']+=30
-	                                        print('')
-	                                        saveThisTo(GrFila,os.path.join(pathRegistro,'GrFila.txt'))
-						break
-					else:
-						print('Error. Intente cerrar el archivo de Excel para que se guarde.')
-						
+                                                print('')
+                                                print('Listo. Se guardó la gráfica en la hoja de "Color" en el Excel "Gráficas.xlsx" dentro de las Consultas')
+                                                GrFila['color']+=30
+                                                print('')
+                                                saveThisTo(GrFila,os.path.join(pathRegistro,'GrFila.txt'))
+                                                break
+                                        else:
+                                                print('Error. Intente cerrar el archivo de Excel para que se guarde.')
+                                                
                                 else:
                                         if colorGrafGen.grafColor(gen,GrFila['color']):
                                                 #guardando las filas correspondientes
@@ -583,14 +609,14 @@ while opcion!=6:
                                 if gen==0:
 
                                         if Gr_Dic_tipos.grafTipos(GrFila['tipo']):
-	                                        print('')
-	                                        print('Listo. Se guardó la gráfica en la hoja de "Tipos" en el Excel "Gráficas.xlsx" dentro de las Consultas')
-	                                        GrFila['tipo']+=30
-	                                        print('')
-	                                        saveThisTo(GrFila,os.path.join(pathRegistro,'GrFila.txt'))
-						break
-					else:
-						print('Error. Intente cerrar el archivo de Excel para que se guarde.')
+                                                print('')
+                                                print('Listo. Se guardó la gráfica en la hoja de "Tipos" en el Excel "Gráficas.xlsx" dentro de las Consultas')
+                                                GrFila['tipo']+=30
+                                                print('')
+                                                saveThisTo(GrFila,os.path.join(pathRegistro,'GrFila.txt'))
+                                                break
+                                        else:
+                                                print('Error. Intente cerrar el archivo de Excel para que se guarde.')
                                 else:
                                         if tiposGrafGen.grafTipos(gen,GrFila['tipo']):
                                                 #guardando las filas correspondientes
