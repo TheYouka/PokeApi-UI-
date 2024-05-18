@@ -5,6 +5,8 @@ import json
 import requests
 import openpyxl
 import os
+import random
+from pathlib import Path
 
 def saveThisTo(jsonDic,archivo):
         with open(archivo, 'w') as file:
