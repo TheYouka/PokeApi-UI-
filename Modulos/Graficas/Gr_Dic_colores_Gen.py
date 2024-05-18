@@ -5,10 +5,7 @@ import matplotlib.pyplot as plt
 import os
 path=os.getcwd()
 
-if path[-33:-17]=='PokeApi-UI--main':
-    import pokeOffline as off
-elif path[-16:]=='PokeApi-UI--main':
-    from Modulos import pokeOffline as off
+from Modulos import pokeOffline as off
 
 #ESTE PROGRAMA SOLO SE DEBE DE CORRER DESDE MAIN.PY
 #Daniel Cárdenas Adame - Añadió funcionalidad de revisar por generación
