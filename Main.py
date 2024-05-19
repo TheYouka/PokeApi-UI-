@@ -703,8 +703,15 @@ while opcion!=6:
 #------------------------------------------------------------------------
 
         elif opcion==5:
-                #borrar información
-                pass
+                #borrar información de los registros guardados en txt
+                folder = Path(os.path.join(os.getcwd(),"registros"))
+
+        	for file in folder.iterdir():
+        		if file.suffix == ".txt":
+
+        			#Vaciar archivos
+        			with open(str(file),"w") as f:
+        				f.write("")
 
 #-------------------------------------------------------------------------
 
