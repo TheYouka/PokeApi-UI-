@@ -169,7 +169,7 @@ def edite_menu():
         registroPath=os.path.join(path,"registros")
         datosMod.saveThisTo(Pokemones, os.path.join(registroPath,'GlobalData.txt'))
         
-        print(Pokemones["goku"])
+       
         
 
 #-------------------------------------------------------------------------------------------
