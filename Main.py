@@ -863,6 +863,10 @@ while opcion!=6:
                 while True:
                                 
                         try:
+
+                                path=os.getcwd()
+                                pathConsultas=os.path.join(path,'Consultas')
+                                pathGrafPng=os.path.join(pathConsultas,'Gráficas')
                                 
                                 folder = Path(os.path.join(os.getcwd(),"registros"))
 
@@ -881,6 +885,14 @@ while opcion!=6:
 
                                 for file in folder.iterdir():
                                         if file.suffix == ".xlsx":
+
+                                                #Eliminar archivos.
+                                                os.remove(file)
+                                
+                                
+                                folder = Path(pathGrafPng)
+                                for file in folder.iterdir():
+                                        if file.suffix == ".png":
 
                                                 #Eliminar archivos.
                                                 os.remove(file)
