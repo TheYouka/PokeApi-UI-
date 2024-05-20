@@ -257,7 +257,7 @@ def edite_menu():
         id_ = random.randint(1026, 9999)
 
         #Añadir info de pokemon
-        pokemon["name"] = name
+        pokemon["name"] = name.lower()
         pokemon["tipo"] = tipos
         pokemon["color"] = color
         pokemon["habitat"] = habitat
@@ -265,6 +265,7 @@ def edite_menu():
         pokemon["id"] = id_
 
         Pokemones[name] = pokemon
+        pokeInfo[name]= pokemon
 
         print('\nListo, la información de su Pokémon se ha registrado.\n')
         
@@ -425,6 +426,7 @@ def siono():
 
 
 opcion=0
+pokeInfo=pokeOffline.abrirRegistro('GlobalData.txt')
 
 while opcion!=6:
 
@@ -454,7 +456,7 @@ while opcion!=6:
         if opcion==1:
                 #consultar info de pokemones
                 print('')
-                pokeInfo=pokeOffline.abrirRegistro('GlobalData.txt')
+                
                 opcionPoke=menuConsultar()
                 
                 if opcionPoke==1:
@@ -524,7 +526,7 @@ while opcion!=6:
                                                 checkPoke.append(nombre)
                                                 nombreMayus=nombre.capitalize()
                                                 print('')
-                                                pokeOffline.printInfo(nombre)
+                                                pokeOffline.printInfo(nombre,pokeInfo)
                                                 print('')
                                                 print('¿Desea ingresar otro Pokémon?')
                                                 verif=siono()-1
