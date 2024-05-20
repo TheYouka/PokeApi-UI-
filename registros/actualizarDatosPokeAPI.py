@@ -7,6 +7,13 @@ import os
 import re
 import json
 
+
+
+#Carga la lista con los nombres de los pokemones y su respectivo color a la vez de inicializar el registro de colores
+def saveThisTo(saving,file):
+	with open(file,'w') as guardando:
+		json.dump(saving,guardando)
+
 def ACTUALIZAR():
     
     path=os.getcwd()
@@ -15,14 +22,7 @@ def ACTUALIZAR():
     
     from Modulos import pokeOffline
     
-    #Carga la lista con los nombres de los pokemones y su respectivo color a la vez de inicializar el registro de colores
-    def saveThisTo(saving,file):
-        with open(file,'w') as guardando:
-            json.dump(saving,guardando)
-
-
-
-
+    
     #sección de cargar la info de colores
     print("Cargando información de colores...")
     colorDiccionario={}
