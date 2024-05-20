@@ -4,6 +4,7 @@ from openpyxl.drawing.image import Image
 import matplotlib.pyplot as plt
 import os
 import numpy as np
+from datetime import datetime
 path=os.getcwd()
 
 from Modulos import pokeOffline as off
@@ -12,6 +13,7 @@ def compararTipos(gen1=1,gen2=9,fila=1,archivo='Gráficas.xlsx'):
 
     path=os.getcwd()
     pathConsultas=os.path.join(path,'Consultas')
+    pathGraficas=os.path.join(pathConsultas,'Gráficas')
     archivoFinal=os.path.join(pathConsultas,archivo)
     tipoDic=off.abrirRegistro('Tipos.txt')
     genList1=off.abrirRegistro('Gen'+str(gen1)+'.txt')
@@ -66,9 +68,10 @@ def compararTipos(gen1=1,gen2=9,fila=1,archivo='Gráficas.xlsx'):
         plt.legend()
 
         
-         #Guardar la gráfica como imagen (esto es temporal)
-        image_path = os.path.join(pathConsultas, 'grafica.png')
-        plt.savefig(image_path, bbox_inches='tight')
+        current_datetime = datetime.now().strftime("%Y-%m-%d-%H-%M-%S")
+         #Guardar la gráfica como imagen
+        image_path = os.path.join(pathGraficas, 'grafica-'+current_datetime+'.png')
+        plt.savefig(image_path)
 
         #Se muestra
         plt.show()
@@ -99,8 +102,6 @@ def compararTipos(gen1=1,gen2=9,fila=1,archivo='Gráficas.xlsx'):
         #Guardar el archivo Excel
         wb.save(archivoFinal)
         
-        #Eliminar la imagen temporal
-        os.remove(image_path)
 
         
         return True
