@@ -186,7 +186,6 @@ def edite_menu():
 - Agua 3
 - Mineral
 - Amorfo
-- Agua 3
 - Agua 2
 - Ditto
 - Dragón
@@ -210,7 +209,6 @@ def edite_menu():
 - Agua 3
 - Mineral
 - Amorfo
-- Agua 3
 - Agua 2
 - Ditto
 - Dragón
