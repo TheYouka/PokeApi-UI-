@@ -1,4 +1,4 @@
-from Modulos import pokeOffline
+
 from Modulos import globalMod
 from registros import actualizarDatosPokeAPI as datosMod
 import json
@@ -21,7 +21,6 @@ def isOnline():
         else:
                 return False
         
-        
 
 from Modulos.Graficas import Gr_Dic_colores
 from Modulos.Graficas import Gr_Dic_colores_Gen as colorGrafGen
@@ -31,12 +30,26 @@ from Modulos.Graficas import Gr_Dic_gen_tip_Gen as grafCompararGen
 from Modulos.Graficas import habilidadesPokemon
 from Modulos.Graficas import Estadisticas
 from Modulos.Graficas import tablaPokeProp
+from Modulos import pokeOffline
+
+
+
 
 
 
 
 path=os.getcwd()
 pathRegistro=os.path.join(path,'registros')
+
+
+
+
+pathGlobalData=os.path.join(pathRegistro,'GlobalData.txt')
+
+
+        
+
+
 
 def checkCrear(filename, jsonDic):
     # Verificar si el archivo existe
@@ -54,16 +67,26 @@ print("¡Una app para conocer todo sobre los Pokémon!")
 print('')
 
 
+
+
+
+
 #-------------------------------------------------------------------------------------------
 #Menu de edición
 def edite_menu():
         print("¡Bienvenido al menú de edición, aqui puede agregar datos al registro")
 
         pokemon = {}
+        Pokemones=pokeOffline.abrirRegistro('GlobalData.txt')
+        Colores=pokeOffline.abrirRegistro('Color.txt')
+        Habitats=pokeOffline.abrirRegistro('Habitat.txt')
+        Tipos=pokeOffline.abrirRegistro('Tipos.txt')
+        Grupos=pokeOffline.abrirRegistro('GrupoDeHuevo.txt')
+        Gen10=pokeOffline.abrirRegistro('Gen10.txt')
 
-        name = input("¿Cúal es el nombre de su pokemon?")
+        name = input("¿Cúal es el nombre de su Pokémon?\n>> ")
 
-        print("""Ingresa el color de tu pokemon, las opciones validas son:
+        print("""\nIngrese el color de su Pokémon, las opciones válidas son:
 - Negro
 - Azul
 - Marrón
@@ -78,83 +101,159 @@ def edite_menu():
         color = input(">> ").lower()
         
         while color not in ["negro","azul","marrón","gris","verde","rosa","morado","rojo","blanco","amarillo"]:
-                print("Ingresa una opcion valida")
+                print("\nIngrese una opcion valida. Revise su ortografía.")
                 color = input(">> ").lower()
 
+        Colores[color].append(name)
 
-        print("""Ingresa el tipo de tu pokemon, las opciones validas son:
-- normal
-- fighting
-- flying
-- poison
-- ground
-- rock
-- bug
-- ghost
-- steel
-- fire
-- water
-- grass
-- electric
-- psychic
-- ice
-- dragon
-- dark
-- fairy
-- stellar
-- unknown
+
+        print("""\nIngrese el primer tipo de su Pokémon, las opciones válidas son:
+- Normal
+- Lucha
+- Volador
+- Veneno
+- Tierra
+- Roca
+- Bicho
+- Fantasma
+- Acero
+- Fuego
+- Agua
+- Planta
+- Eléctrico
+- Psíquico
+- Hielo
+- Dragón
+- Siniestro
+- Hada
+- Stellar
 """)
 
-        tipo = input(">> ").lower()
-        while tipo not in ["normal", "fighting", "flying", "poison", "ground", "rock", "bug", "ghost", "steel", "fire", "water", "grass", "electric", "psychic", "ice", "dragon", "dark", "fairy", "stellar", "unknown"]:
-                print("Ingresa una opcion valida")
-                tipo = input(">> ").lower()
+        tipo1 = input(">> ").lower()
+        while tipo1 not in ['normal', 'lucha', 'volador', 'veneno', 'tierra', 'roca', 'bicho', 'fantasma', 'acero', 'fuego', 'agua', 'planta', 'eléctrico', 'psíquico', 'hielo', 'dragón', 'siniestro', 'hada', 'stellar']:
+                print("\nIngrese una opcion valida. Revise su ortografía.")
+                tipo1 = input(">> ").lower()
+
+        print("""\nIngrese el primer tipo de su Pokémon, las opciones válidas son:
+- Normal
+- Lucha
+- Volador
+- Veneno
+- Tierra
+- Roca
+- Bicho
+- Fantasma
+- Acero
+- Fuego
+- Agua
+- Planta
+- Eléctrico
+- Psíquico
+- Hielo
+- Dragón
+- Siniestro
+- Hada
+- Stellar
+- Ninguno
+""")
+
+        tipo2 = input(">> ").lower()
+        while tipo2 not in ['normal', 'lucha', 'volador', 'veneno', 'tierra', 'roca', 'bicho', 'fantasma', 'acero', 'fuego', 'agua', 'planta', 'eléctrico', 'psíquico', 'hielo', 'dragón', 'siniestro', 'hada', 'stellar', 'ninguno']:
+                print("\nIngrese una opcion valida. Revise su ortografía.")
+                tipo2 = input(">> ").lower()
+
+        if tipo2!='ninguno':
+                tipos=[tipo1,tipo2]
+                Tipos[tipo2].append(name)
+        else:
+                tipos=[tipo1]
+
+        Tipos[tipo1].append(name)
 
 
-        print("""Ingresa el grupo al que pertenece tu pokemon, las opciones validas son:
-- monster
-- water1
-- bug
-- flying
-- ground
-- fairy
-- plant
-- humanshape
-- water3
-- mineral
-- indeterminate
-- water2
-- ditto
-- dragon
-- no-eggs
+        print("""\nIngrese el primer grupo de huevo al que pertenece su Pokémon, las opciones válidas son:
+- Monstruo
+- Agua 1
+- Bicho
+- Volador
+- Campo
+- Hada
+- Planta
+- Humanoide
+- Agua 3
+- Mineral
+- Amorfo
+- Agua 3
+- Agua 2
+- Ditto
+- Dragón
+- Desconocido
 """)
         
-        grupo = input(">> ").lower()
-        while grupo not in ["monster", "water1", "bug", "flying", "ground", "fairy", "plant", "humanshape", "water3", "mineral", "indeterminate", "water2", "ditto", "dragon", "no-eggs"]:
-                print("Ingresa una opcion valida")
-                grupo = input(">> ").lower()
+        grupo1 = input(">> ").lower()
+        while grupo1 not in ['monstruo', 'agua 1', 'bicho', 'volador', 'campo', 'hada', 'planta', 'humanoide', 'agua 3', 'mineral', 'amorfo', 'agua 2', 'ditto', 'dragón', 'desconocido']:
+                print("\nIngrese una opcion valida. Revise su ortografía.")
+                grupo1 = input(">> ").lower()
 
-        print("""Ingresa el grupo al que pertenece tu pokemon, las opciones validas son:
+        print("""\nIngrese el segundo grupo de huevo al que pertenece su Pokémon, las opciones válidas son:
+- Monstruo
+- Agua 1
+- Bicho
+- Volador
+- Campo
+- Hada
+- Planta
+- Humanoide
+- Agua 3
+- Mineral
+- Amorfo
+- Agua 3
+- Agua 2
+- Ditto
+- Dragón
+- Desconocido
+- Ninguno
+""")
+        
+        grupo2 = input(">> ").lower()
+        while grupo2 not in ['monstruo', 'agua 1', 'bicho', 'volador', 'campo', 'hada', 'planta', 'humanoide', 'agua 3', 'mineral', 'amorfo', 'agua 2', 'ditto', 'dragón', 'desconocido','ninguno']:
+                print("\nIngrese una opcion valida. Revise su ortografía.")
+                grupo2 = input(">> ").lower()
+
+        if grupo2!='ninguno':
+                grupos=[grupo1,grupo2]
+                Grupos[grupo2].append(name)
+        else:
+                grupos=[grupo1]
+
+        Grupos[grupo1].append(name)
+                
+
+        print("""Ingrese el hábitat al que pertenece su Pokémon, las opciones válidas son:
 - Caverna               
-- bosque
-- pradera
-- montaña
-- raro
-- campo 
-- mar
-- ciudad
-- agua salada
-
+- Bosque
+- Pradera
+- Montaña
+- Raro
+- Campo
+- Mar
+- Ciudad
+- Agua salada
+- Ninguno
 """)
 
         habitat = input(">> ").lower()
-        while habitat not in ["caverna", "bosque", "pradera", "montaña", "raro", "campo", "mar", "ciudad", "agua salada"]:
-                print("Ingresa una opcion valida")
+        while habitat not in ["caverna", "bosque", "pradera", "montaña", "raro", "campo", "mar", "ciudad", "agua salada", 'ninguno']:
+                print("\nIngrese una opcion valida. Revise su ortografía.")
                 habitat = input(">> ").lower()
 
 
+        if habitat!='ninguno':
+                Habitats[habitat].append(name)
+
+
         #Generar id random
-        id_ = random.randint(1000, 9999)
+        id_ = random.randint(1026, 9999)
 
         #Añadir info de pokemon
         pokemon["name"] = name
@@ -166,8 +265,14 @@ def edite_menu():
 
         Pokemones[name] = pokemon
 
+        print('\nListo, la información de su Pokémon se ha registrado.\n')
+        
         registroPath=os.path.join(path,"registros")
         datosMod.saveThisTo(Pokemones, os.path.join(registroPath,'GlobalData.txt'))
+        datosMod.saveThisTo(Habitats, os.path.join(registroPath,'Habitat.txt'))
+        datosMod.saveThisTo(Grupos, os.path.join(registroPath,'GrupoDeHuevo.txt'))
+        datosMod.saveThisTo(Colores, os.path.join(registroPath,'Color.txt'))
+        datosMod.saveThisTo(Tipos, os.path.join(registroPath,'Tipos.txt'))
         
        
         
@@ -303,7 +408,20 @@ def siono():
                         print("Ingrese una opción valida. Revise su ortografía.")
 
 
-Pokemones=pokeOffline.abrirRegistro('GlobalData.txt')
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 opcion=0
 
@@ -312,7 +430,18 @@ while opcion!=6:
         checkCrear(os.path.join(pathRegistro,'GrFila.txt'),{'color':1,'tipo':1,'tipoGen':1,'habilidad':1})
         GrFila=pokeOffline.abrirRegistro('GrFila.txt')
         
-        opcion=show_menu()
+        
+
+
+        try:
+                Pokemones=pokeOffline.abrirRegistro('GlobalData.txt')
+                a=Pokemones['snorlax']
+                opcion=show_menu()
+        except:
+                print('Antes de continuar, se deben de actualizar los datos.\n')
+                print('')
+                update()
+                opcion=show_menu()
         
         #de aquí vamos a hacer los procesos que apliquen para cada sección
 
@@ -698,30 +827,69 @@ while opcion!=6:
         
         ## Función Para actualizar los pokemnoes
         elif opcion==4:
-                edite_menu()
+                while True:
+                        dec4=str(input("""¿Qué desea hacer?
+1- Actualizar los registros con los datos de la API
+(Advertencia: Esto borrará los Pokémon que se hayan creado)
+2- Crear un Pokémon nuevo.
+
+>> """))
+                        if dec4.isdigit():
+                                if dec4=='1':
+                                        dec4=1
+                                        break
+                                elif dec4=='2':
+                                        dec4=2
+                                        break
+                                else:
+                                        print('\nVuelva a intentar. Esa opción no es válida.\n')
+                        else:
+                                print('\nVuelva a intentar. Ingrese el número.\n')
+                                
+                if dec4==2:
+                        edite_menu()
+
+                elif dec4==1:
+                        update()
+
+                else:
+                        print('Error')
 
 #------------------------------------------------------------------------
 
         elif opcion==5:
                 #borrar información de los registros guardados en txt
-                folder = Path(os.path.join(os.getcwd(),"registros"))
+                while True:
+                                
+                        try:
+                                
+                                folder = Path(os.path.join(os.getcwd(),"registros"))
 
-        	for file in folder.iterdir():
-        		if file.suffix == ".txt":
+                                for file in folder.iterdir():
+                                        if file.suffix == ".txt":
 
-        			#Vaciar archivos
-        			with open(str(file),"w") as f:
-        				f.write("")
+                                                #Vaciar archivos
+                                                with open(str(file),"w") as f:
+                                                        f.write("{}")
 
-                #aquí borrando en las consultas
-                folder = Path(os.path.join(os.getcwd(),"Consultas"))
+                                #aquí borrando en las consultas
+                                folder = Path(os.path.join(os.getcwd(),"Consultas"))
 
-        	for file in folder.iterdir():
-        		if file.suffix == ".xlsx":
+                                for file in folder.iterdir():
+                                        if file.suffix == ".xlsx":
 
-        			#Vaciar archivos
-        			with open(str(file),"w") as f:
-        				f.write("")
+                                                #Eliminar archivos.
+                                                os.remove(file)
+
+                                #diciéndole al usuario
+                                print('\nListo. Los archivos se han borrado.\n')
+                                break
+
+                        except:
+                                a=input('\nOcurrió un error. Revise que no estén abiertos los archivos.\nLo esperaremos.\n>> ')
+                                continue
+                                
+                                
 
 #-------------------------------------------------------------------------
 
