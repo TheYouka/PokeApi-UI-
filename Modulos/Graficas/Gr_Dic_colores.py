@@ -2,6 +2,7 @@ from openpyxl import load_workbook
 from openpyxl import Workbook
 from openpyxl.drawing.image import Image
 import matplotlib.pyplot as plt
+from datetime import datetime
 import os
 
 #ESTE PROGRAMA SOLO SE DEBE DE CORRER DESDE MAIN.PY
@@ -13,6 +14,7 @@ def grafColor(fila=1, archivo='Gráficas.xlsx'):
     pathConsultas=os.path.join(path,'Consultas')
     pathModulos=os.path.join(path,'Modulos')
     pathGraficas=os.path.join(pathModulos,'Graficas')
+    pathGrafPng=os.path.join(pathConsultas,'Gráficas')
     archivoFinal=os.path.join(pathConsultas,archivo)
     
     try:
@@ -62,8 +64,9 @@ def grafColor(fila=1, archivo='Gráficas.xlsx'):
         wb.save(os.path.join(pathGraficas,"Grcolor.xlsx"))
 
         
-        #Guardar la gráfica como imagen (esto es temporal)
-        image_path = os.path.join(pathConsultas, 'grafica.png')
+        current_datetime = datetime.now().strftime("%Y-%m-%d-%H-%M-%S")
+         #Guardar la gráfica como imagen
+        image_path = os.path.join(pathGrafPng, 'grafica-'+current_datetime+'.png')
         plt.savefig(image_path)
 
         
@@ -92,9 +95,6 @@ def grafColor(fila=1, archivo='Gráficas.xlsx'):
         
         #Guardar el archivo Excel
         wb.save(archivoFinal)
-        
-        #Eliminar la imagen temporal
-        os.remove(image_path)
 
         return True
         
