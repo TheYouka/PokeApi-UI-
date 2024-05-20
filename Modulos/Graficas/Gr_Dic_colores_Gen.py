@@ -17,7 +17,7 @@ def grafColor(gen, fila=1, archivo='Gráficas.xlsx'):
     titulo="Cantidad de Pokémon de cada color en la generación "+str(gen)
     path=os.getcwd()
     pathConsultas=os.path.join(path,'Consultas')
-    pathGrafPng==os.path.join(pathConsultas,'Gráficas')
+    pathGrafPng=os.path.join(pathConsultas,'Gráficas')
     archivoFinal=os.path.join(pathConsultas,archivo)
     try:
         
