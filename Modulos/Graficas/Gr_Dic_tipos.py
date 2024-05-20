@@ -3,6 +3,7 @@ from openpyxl import Workbook
 from openpyxl.drawing.image import Image
 import matplotlib.pyplot as plt
 import os
+from datetime import datetime
 
 #grafica de pastel de tipos de pokemones
 def grafTipos(fila=1,archivo='Gráficas.xlsx'):
@@ -11,6 +12,7 @@ def grafTipos(fila=1,archivo='Gráficas.xlsx'):
         path=os.getcwd()
         pathConsultas=os.path.join(path,'Consultas')
         pathModulos=os.path.join(path,'Modulos')
+        pathGrafPng=os.path.join(pathConsultas,'Gráficas')
         pathGraficas=os.path.join(pathModulos,'Graficas')
         pathExcel=pathGraficas=os.path.join(pathGraficas,'GrType.xlsx')
         archivoFinal=os.path.join(pathConsultas,archivo)
@@ -57,8 +59,9 @@ def grafTipos(fila=1,archivo='Gráficas.xlsx'):
 
         wb.save(pathExcel)
 
-        #Guardar la gráfica como imagen (esto es temporal)
-        image_path = os.path.join(pathConsultas, 'grafica.png')
+        current_datetime = datetime.now().strftime("%Y-%m-%d-%H-%M-%S")
+         #Guardar la gráfica como imagen
+        image_path = os.path.join(pathGrafPng, 'grafica-'+current_datetime+'.png')
         plt.savefig(image_path)
 
         #se muestra la gráfica al usuario
@@ -90,8 +93,6 @@ def grafTipos(fila=1,archivo='Gráficas.xlsx'):
         #Guardar el archivo Excel
         wb.save(archivoFinal)
         
-        #Eliminar la imagen temporal
-        os.remove(image_path)
 
         return True
 
