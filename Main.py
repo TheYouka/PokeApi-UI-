@@ -713,6 +713,16 @@ while opcion!=6:
         			with open(str(file),"w") as f:
         				f.write("")
 
+                #aquí borrando en las consultas
+                folder = Path(os.path.join(os.getcwd(),"Consultas"))
+
+        	for file in folder.iterdir():
+        		if file.suffix == ".xlsx":
+
+        			#Vaciar archivos
+        			with open(str(file),"w") as f:
+        				f.write("")
+
 #-------------------------------------------------------------------------
 
         elif opcion==6:
