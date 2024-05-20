@@ -84,7 +84,7 @@ def edite_menu():
         Grupos=pokeOffline.abrirRegistro('GrupoDeHuevo.txt')
         Gen10=pokeOffline.abrirRegistro('Gen10.txt')
 
-        name = input("¿Cúal es el nombre de su Pokémon?\n>> ")
+        name = input("¿Cúal es el nombre de su Pokémon?\n>> ").lower()
 
         print("""\nIngrese el color de su Pokémon, las opciones válidas son:
 - Negro
