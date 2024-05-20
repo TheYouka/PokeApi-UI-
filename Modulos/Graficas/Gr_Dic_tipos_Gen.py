@@ -3,6 +3,7 @@ from openpyxl import Workbook
 from openpyxl.drawing.image import Image
 import matplotlib.pyplot as plt
 import os
+from datetime import datetime
 path=os.getcwd()
 
 from Modulos import pokeOffline as off
@@ -16,6 +17,7 @@ def grafTipos(gen, fila=1, archivo='Gráficas.xlsx'):
     titulo="Cantidad de Pokémon de cada tipo en la generación "+str(gen)
     path=os.getcwd()
     pathConsultas=os.path.join(path,'Consultas')
+    pathGrafPng=os.path.join(pathConsultas,'Gráficas')
     archivoFinal=os.path.join(pathConsultas,archivo)
     
     try:
@@ -56,8 +58,9 @@ def grafTipos(gen, fila=1, archivo='Gráficas.xlsx'):
         plt.axis("equal")
         plt.title(titulo)
 
-         #Guardar la gráfica como imagen (esto es temporal)
-        image_path = os.path.join(pathConsultas, 'grafica.png')
+        current_datetime = datetime.now().strftime("%Y-%m-%d-%H-%M-%S")
+         #Guardar la gráfica como imagen
+        image_path = os.path.join(pathGrafPng, 'grafica-'+current_datetime+'.png')
         plt.savefig(image_path)
 
         #se muestra la gráfica al usuario
@@ -88,8 +91,6 @@ def grafTipos(gen, fila=1, archivo='Gráficas.xlsx'):
         #Guardar el archivo Excel
         wb.save(archivoFinal)
         
-        #Eliminar la imagen temporal
-        os.remove(image_path)
 
         return True
         
