@@ -128,7 +128,7 @@ def edite_menu():
 - Hada
 - Stellar
 """)
-
+        tipos = []
         tipo1 = input(">> ").lower()
         while tipo1 not in ['normal', 'lucha', 'volador', 'veneno', 'tierra', 'roca', 'bicho', 'fantasma', 'acero', 'fuego', 'agua', 'planta', 'eléctrico', 'psíquico', 'hielo', 'dragón', 'siniestro', 'hada', 'stellar']:
                 print("\nIngrese una opcion valida. Revise su ortografía.")
@@ -162,13 +162,16 @@ def edite_menu():
                 print("\nIngrese una opcion valida. Revise su ortografía.")
                 tipo2 = input(">> ").lower()
 
-        if tipo2!='ninguno':
-                tipos=[tipo1,tipo2]
-                Tipos[tipo2].append(name)
-        else:
-                tipos=[tipo1]
 
-        Tipos[tipo1].append(name)
+        if tipo2=='ninguno':
+                #tipos=[tipo1,tipo2]
+                tipos.append(tipo1)
+                #Tipos[tipo2].append(name)
+        else:
+                tipos.append(tipo1)
+                tipos.append(tipo2)
+
+        #Tipos[tipo1].append(name)
 
 
         print("""\nIngrese el primer grupo de huevo al que pertenece su Pokémon, las opciones válidas son:
@@ -189,7 +192,7 @@ def edite_menu():
 - Dragón
 - Desconocido
 """)
-        
+        grupos = []
         grupo1 = input(">> ").lower()
         while grupo1 not in ['monstruo', 'agua 1', 'bicho', 'volador', 'campo', 'hada', 'planta', 'humanoide', 'agua 3', 'mineral', 'amorfo', 'agua 2', 'ditto', 'dragón', 'desconocido']:
                 print("\nIngrese una opcion valida. Revise su ortografía.")
@@ -220,13 +223,13 @@ def edite_menu():
                 print("\nIngrese una opcion valida. Revise su ortografía.")
                 grupo2 = input(">> ").lower()
 
-        if grupo2!='ninguno':
-                grupos=[grupo1,grupo2]
-                Grupos[grupo2].append(name)
+        if grupo2=='ninguno':
+                grupos.append(grupo1)
         else:
-                grupos=[grupo1]
+                grupos.append(grupo1)
+                grupos.append(grupo2)
 
-        Grupos[grupo1].append(name)
+        #Grupos[grupo1].append(name)
                 
 
         print("""Ingrese el hábitat al que pertenece su Pokémon, las opciones válidas son:
@@ -257,10 +260,10 @@ def edite_menu():
 
         #Añadir info de pokemon
         pokemon["name"] = name
-        pokemon["tipo"] = tipo
+        pokemon["tipo"] = tipos
         pokemon["color"] = color
         pokemon["habitat"] = habitat
-        pokemon["grupo"] = grupo
+        pokemon["grupo"] = grupos
         pokemon["id"] = id_
 
         Pokemones[name] = pokemon
