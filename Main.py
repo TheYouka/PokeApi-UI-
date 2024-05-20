@@ -873,6 +873,9 @@ while opcion!=6:
                                                 with open(str(file),"w") as f:
                                                         f.write("{}")
 
+                                        if file.name=='GrFila.txt':
+                                                os.remove(file)
+
                                 #aquí borrando en las consultas
                                 folder = Path(os.path.join(os.getcwd(),"Consultas"))
 
