@@ -74,7 +74,7 @@ print('')
 #-------------------------------------------------------------------------------------------
 #Menu de edición
 def edite_menu():
-        print("¡Bienvenido al menú de edición, aqui puede agregar datos al registro")
+        print("\n¡Bienvenido al menú de edición, aqui puede agregar datos al registro")
 
         pokemon = {}
         Pokemones=pokeOffline.abrirRegistro('GlobalData.txt')
@@ -98,7 +98,7 @@ def edite_menu():
 - Blanco
 - Amarillo""")
 
-        color = input(">> ").lower()
+        color = input("\n>> ").lower()
         
         while color not in ["negro","azul","marrón","gris","verde","rosa","morado","rojo","blanco","amarillo"]:
                 print("\nIngrese una opcion valida. Revise su ortografía.")
@@ -230,7 +230,7 @@ def edite_menu():
         #Grupos[grupo1].append(name)
                 
 
-        print("""Ingrese el hábitat al que pertenece su Pokémon, las opciones válidas son:
+        print("""\nIngrese el hábitat al que pertenece su Pokémon, las opciones válidas son:
 - Caverna               
 - Bosque
 - Pradera
@@ -829,7 +829,7 @@ while opcion!=6:
         ## Función Para actualizar los pokemnoes
         elif opcion==4:
                 while True:
-                        dec4=str(input("""¿Qué desea hacer?
+                        dec4=str(input("""\n¿Qué desea hacer?
 1- Actualizar los registros con los datos de la API
 (Advertencia: Esto borrará los Pokémon que se hayan creado)
 2- Crear un Pokémon nuevo.
