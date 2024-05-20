@@ -134,7 +134,7 @@ def edite_menu():
                 print("\nIngrese una opcion valida. Revise su ortografía.")
                 tipo1 = input(">> ").lower()
 
-        print("""\nIngrese el primer tipo de su Pokémon, las opciones válidas son:
+        print("""\nIngrese el segundo tipo de su Pokémon, las opciones válidas son:
 - Normal
 - Lucha
 - Volador
