@@ -5,8 +5,10 @@ import json
 import requests
 import openpyxl
 import os
+import subprocess
 import random
 from pathlib import Path
+
 
 def saveThisTo(jsonDic,archivo):
         with open(archivo, 'w') as file:
@@ -14,12 +16,24 @@ def saveThisTo(jsonDic,archivo):
         a=0
         #se cierra función
 
+
 def isOnline():
+  process = subprocess.run(["ping","-w","1","pokeapi.co"],capture_output=True)
+  if process.returncode == 0:
+    #Tienes internet
+    return True
+  else:
+    #No tienes internet
+    return False
+
+"""def isOnline():
+
+
         test=requests.get('https://pokeapi.co/api/v2/pokemon-color/1/').status_code
         if test==200:
                 return True
         else:
-                return False
+                return False"""
         
 
 from Modulos.Graficas import Gr_Dic_colores
@@ -286,16 +300,15 @@ def update():
         if isOnline():
                 print('---------- Actualizando ----------')
                 print('')
-                Pokemones = datosMod.ACTUALIZAR()
+                datosMod.ACTUALIZAR()
                 print('')
                 print('---------- Se ha actualizado ----------')
                 print('')
                 print('')
 
-        else:
+        else:   
+                print("[WARNING] No se ha detectado una conexión a internet")
                 print('[WARNING] Los registros no están actualizados, proceda con precaución')
-
-        return Pokemones
 
 def show_menu():
 
