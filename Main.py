@@ -631,7 +631,7 @@ while opcion!=6:
                                                 checkPoke.append(nombre)
                                                 nombreMayus=nombre.capitalize()
                                                 print('')
-                                                pokeOffline.printInfo(nombre)
+                                                pokeOffline.printInfo(nombre,pokeInfo)
                                                 print('')
                                                 print('¿Desea ingresar otro Pokémon?')
                                                 verif=siono()-1
