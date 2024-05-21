@@ -573,7 +573,7 @@ while opcion!=6:
                                         try:
                                                 nombre=pokeOffline.numToName(i)
                                                 print('')
-                                                pokeOffline.printInfo(nombre)
+                                                pokeOffline.printInfo(nombre,pokeInfo)
                                                 print('')
                                         except:
                                                 print('')
