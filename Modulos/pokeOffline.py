@@ -49,7 +49,7 @@ def nameToNum(name,pokemones=abrirJson(os.path.join(pathRegistro,'GlobalData.txt
   except:
     return 0
 
-def printInfo(nombrePoke,pokeInfo=abrirJson(os.path.join(pathRegistro,'GlobalData.txt'))):
+def printInfo(nombrePoke,pokeInfo):
   nombreMayus=nombrePoke.capitalize()
   nombre=nombrePoke
   print('-----'+nombreMayus+'-----')
@@ -62,7 +62,7 @@ def printInfo(nombrePoke,pokeInfo=abrirJson(os.path.join(pathRegistro,'GlobalDat
     print('Grupo de huevo: '+pokeInfo[nombre]['grupo'][0].capitalize())
   elif len(pokeInfo[nombre]['grupo'])==2:
     print('Grupos de huevo: '+pokeInfo[nombre]['grupo'][0].capitalize()+'-'+pokeInfo[nombre]['grupo'][1].capitalize())
-  print('Número Nacional: '+pokeInfo[nombre]['id'])
+  print('Número Nacional: '+ str(pokeInfo[nombre]['id']))
   print('Hábitat: '+pokeInfo[nombre]['habitat'].capitalize())
   print('-------------------------------')
 
