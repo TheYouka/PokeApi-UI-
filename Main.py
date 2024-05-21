@@ -262,7 +262,7 @@ def edite_menu():
         pokemon["color"] = color
         pokemon["habitat"] = habitat
         pokemon["grupo"] = grupos
-        pokemon["id"] = id_
+        pokemon["id"] = str(id_)
 
         Pokemones[name] = pokemon
         pokeInfo[name]= pokemon
