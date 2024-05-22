@@ -17,3 +17,13 @@ Características principales:
 
 # Instalación
 
+Para descargar la aplicación puede seguir cualquiera de los dos siguientes métodos
+
+## Zip
+Pulse **descargar zip** para descargar el programa en su pc, luego de eso descomprima el archivo.
+
+## GitHUb
+En una terminal (asegurese de que esté instalado git en su pc) ingrese el siguiente comando 
+```bash
+git clone 
+```
