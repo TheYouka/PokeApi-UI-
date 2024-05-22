@@ -22,8 +22,18 @@ Para descargar la aplicación puede seguir cualquiera de los dos siguientes mét
 ## Zip
 Pulse **descargar zip** para descargar el programa en su pc, luego de eso descomprima el archivo.
 
-## GitHUb
+## GitHub
 En una terminal (asegurese de que esté instalado git en su pc) ingrese el siguiente comando 
 ```bash
-git clone 
+git clone https://github.com/TheYouka/PokeApi-UI-.git 
+```
+
+Una vez con el archivo descargado y la carpeta descomprimida ejecute el siguiente código para descargar todas las dependencias necesarias para la ejecución correcta del programa
+```bash
+ python -m pip install -r ./PokeApi-UI-/requirements.txt
+```
+
+Listo, ya es capaz de ejecutar la aplicación, para ello escriba el siguiente código
+```bash
+python ./PokeApi-UI-/Main.py
 ```
