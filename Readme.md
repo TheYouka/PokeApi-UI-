@@ -14,3 +14,6 @@ Características principales:
 - Integración con la PokeAPI para obtener datos en tiempo real.
 
 ![Texto alternativo](https://www.nintendo.com/eu/media/images/10_share_images/others_3/SI_Pokemon.jpg)
+
+# Instalación
+
